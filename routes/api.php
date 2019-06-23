@@ -16,3 +16,21 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// List hotels
+
+Route::get('hotels' , 'HotelsController@index');
+
+//Show single hotel
+Route::get('hotel/{id}' , 'HotelsController@show');
+
+//edit hotel details
+
+Route::put('hotel/{id}' , 'HotelsController@store');
+
+Route::fallback(function(){
+    return response()->json([
+        'message' => 'Page Not Found. If error persists, contact jacjimus@gmail.com'], 404);
+});
+
+
