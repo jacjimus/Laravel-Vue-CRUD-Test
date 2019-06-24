@@ -26,7 +26,7 @@ Route::get('hotel/{id}' , 'HotelsController@show');
 
 //edit hotel details
 
-Route::put('hotel/{id}' , 'HotelsController@store');
+Route::put('hotel' , 'HotelsController@store');
 
 Route::fallback(function(){
     return response()->json([

@@ -43,9 +43,24 @@ class HotelsController extends Controller
     public function store(Request $request)
     {
 
+
+
+         $request->validate([
+            'name' => 'bail|required',
+            'address' => 'required',
+            'country' => 'required',
+            'city' => 'required',
+            'phone_number' => 'required',
+            'state' => 'required',
+            'zip' => 'required',
+            'email' => 'required',
+
+        ]);
+
+
         if($request->isMethod('put') ) :
-         $hotel = Hotels::findOrFail($request->id);
-        $hotel->id = $request->input('id');
+         $hotel = Hotels::findOrFail($request->input('hotel_id'));
+
         $hotel->name = $request->input('name');
         $hotel->address = $request->input('address');
         $hotel->city = $request->input('city');
@@ -54,7 +69,12 @@ class HotelsController extends Controller
         $hotel->zip = $request->input('zip');
         $hotel->phone_number = $request->input('phone_number');
         $hotel->email = $request->input('email');
-        $hotel->image = $request->input('image');
+            if ($request->hasFile('image')) {
+                $file = array('image' =>  $request->file('image'));
+
+                $request->file('image')->move(public_path() . '/images/',
+                    $file);
+            }
         if($hotel->save())
             return new HotelResource($hotel);
 

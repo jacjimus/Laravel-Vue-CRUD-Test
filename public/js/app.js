@@ -1723,10 +1723,112 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       hotels: [],
+      errors: [],
+      update_hotel: {},
       hotel: {
         id: '',
         name: '',
@@ -1741,8 +1843,9 @@ __webpack_require__.r(__webpack_exports__);
         status: ''
       },
       hotel_id: '',
+      name: '',
       edit: false,
-      imageUrl: ''
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     };
   },
   created: function created() {
@@ -1756,7 +1859,70 @@ __webpack_require__.r(__webpack_exports__);
         return res.json();
       }).then(function (res) {
         _this.hotels = res.data;
-        _this.imageUrl = "../../images/" + res.data[0].image;
+      });
+    },
+    initUpdate: function initUpdate(index) {
+      this.errors = [];
+      $("#update-hotel-model").modal("show");
+      this.update_hotel = this.hotels[index];
+    },
+    updateHotel: function updateHotel() {
+      var _this2 = this;
+
+      axios.put('api/hotel/', {
+        hotel_id: this.update_hotel.id,
+        name: this.update_hotel.name,
+        address: this.update_hotel.address,
+        country: this.update_hotel.country,
+        city: this.update_hotel.city,
+        state: this.update_hotel.address,
+        zip: this.update_hotel.zip,
+        phone_number: this.update_hotel.phone_number,
+        email: this.update_hotel.email,
+        image: this.update_hotel.image
+      }).then(function (response) {
+        $("#update-hotel-model").modal("hide");
+      })["catch"](function (error) {
+        _this2.errors = []; // validation for name
+
+        if (error.response.data.errors.name) {
+          _this2.errors.push(error.response.data.errors.name[0]);
+        } // validation for address
+
+
+        if (error.response.data.errors.address) {
+          _this2.errors.push(error.response.data.errors.address[0]);
+        } // validation for country
+
+
+        if (error.response.data.errors.country) {
+          _this2.errors.push(error.response.data.errors.country[0]);
+        } // validation for city
+
+
+        if (error.response.data.errors.city) {
+          _this2.errors.push(error.response.data.errors.city[0]);
+        } // validation for state
+
+
+        if (error.response.data.errors.state) {
+          _this2.errors.push(error.response.data.errors.state[0]);
+        } // validation for zip
+
+
+        if (error.response.data.errors.zip) {
+          _this2.errors.push(error.response.data.errors.zip[0]);
+        } // validation for phone_number
+
+
+        if (error.response.data.errors.phone_number) {
+          _this2.errors.push(error.response.data.errors.phone_number[0]);
+        } // validation for email
+
+
+        if (error.response.data.errors.email) {
+          _this2.errors.push(error.response.data.errors.email[0]);
+        }
       });
     }
   }
@@ -37059,49 +37225,521 @@ var render = function() {
     [
       _c("h2", [_vm._v("Hotels")]),
       _vm._v(" "),
-      _vm._l(_vm.hotels, function(hotel) {
-        return _c("div", { key: hotel.id, staticClass: "card card-body" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("h3", [_vm._v(_vm._s(hotel.name))])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-6" }, [
-              _c("p", [
-                _vm._v("\n            " + _vm._s(hotel.address) + " "),
-                _c("br"),
-                _vm._v(" "),
-                _c("span", [_vm._v(_vm._s(hotel.country))]),
-                _c("br"),
-                _vm._v(" "),
-                _c("span", [_vm._v(_vm._s(hotel.city))]),
-                _c("br"),
-                _vm._v(" "),
-                _c("span", [_vm._v(_vm._s(hotel.state))]),
-                _c("br"),
-                _vm._v(" "),
-                _c("span", [_vm._v(_vm._s(hotel.zip))]),
-                _c("br"),
-                _vm._v(" "),
-                _c("code", [_vm._v(_vm._s(hotel.phone_number))]),
-                _c("br")
+      _vm._l(_vm.hotels, function(hotel, index) {
+        return _c(
+          "div",
+          { key: hotel.id, staticClass: "card card-body mb-2" },
+          [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-10" }, [
+                _c("h3", [_vm._v(_vm._s(hotel.name))])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "pull-right col-md-2" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "dropdown-item text-primary",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        return _vm.initUpdate(index)
+                      }
+                    }
+                  },
+                  [_vm._v("Edit hotel")]
+                )
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-md-6" }, [
-              _c("img", {
-                attrs: { src: _vm.imageUrl },
-                on: { error: _vm.imgUrlAlt }
-              })
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("p", [
+                  _vm._v("\n            " + _vm._s(hotel.address) + " "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(hotel.country))]),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(hotel.city))]),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(hotel.state))]),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(hotel.zip))]),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("code", [_vm._v(_vm._s(hotel.email))]),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("code", [_vm._v(_vm._s(hotel.phone_number))]),
+                  _c("br")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("img", {
+                  attrs: {
+                    src: "" + hotel.image.replace("public", ""),
+                    height: "200px",
+                    width: "250px"
+                  },
+                  on: { error: function($event) {} }
+                })
+              ])
             ])
-          ])
-        ])
-      })
+          ]
+        )
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "modal fade",
+          attrs: { tabindex: "-1", role: "dialog", id: "update-hotel-model" }
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "modal-dialog", attrs: { role: "document" } },
+            [
+              _c("div", { staticClass: "modal-content" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-body" }, [
+                  _vm.errors.length > 0
+                    ? _c("div", { staticClass: "alert alert-danger" }, [
+                        _c(
+                          "ul",
+                          _vm._l(_vm.errors, function(error) {
+                            return _c("li", [_vm._v(_vm._s(error))])
+                          }),
+                          0
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("form", { staticClass: "form" }, [
+                    _c("input", {
+                      attrs: { type: "hidden", id: "_token" },
+                      domProps: { value: _vm.csrf }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group row" }, [
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c("label", { attrs: { for: "name" } }, [
+                          _vm._v("Name:")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.update_hotel.name,
+                              expression: "update_hotel.name"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text", id: "name" },
+                          domProps: { value: _vm.update_hotel.name },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.update_hotel,
+                                "name",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c("label", { attrs: { for: "address" } }, [
+                          _vm._v("Address:")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.update_hotel.address,
+                              expression: "update_hotel.address"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            placeholder: "Address",
+                            id: "address"
+                          },
+                          domProps: { value: _vm.update_hotel.address },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.update_hotel,
+                                "address",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group row" }, [
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c("label", { attrs: { for: "country" } }, [
+                          _vm._v("Country:")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.update_hotel.country,
+                              expression: "update_hotel.country"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            placeholder: "Country",
+                            id: "country"
+                          },
+                          domProps: { value: _vm.update_hotel.country },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.update_hotel,
+                                "country",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c("label", { attrs: { for: "city" } }, [
+                          _vm._v("City:")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.update_hotel.city,
+                              expression: "update_hotel.city"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            placeholder: "City",
+                            id: "city"
+                          },
+                          domProps: { value: _vm.update_hotel.city },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.update_hotel,
+                                "city",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group row" }, [
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c("label", { attrs: { for: "state" } }, [
+                          _vm._v("State:")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.update_hotel.state,
+                              expression: "update_hotel.state"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            placeholder: "State",
+                            id: "state"
+                          },
+                          domProps: { value: _vm.update_hotel.state },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.update_hotel,
+                                "state",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c("label", { attrs: { for: "zip" } }, [
+                          _vm._v("Zip:")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.update_hotel.zip,
+                              expression: "update_hotel.zip"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            placeholder: "Zip",
+                            id: "zip"
+                          },
+                          domProps: { value: _vm.update_hotel.zip },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.update_hotel,
+                                "zip",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group row" }, [
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c("label", { attrs: { for: "phone_number" } }, [
+                          _vm._v("Phone number:")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.update_hotel.phone_number,
+                              expression: "update_hotel.phone_number"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            placeholder: "phone_number",
+                            id: "phone_number"
+                          },
+                          domProps: { value: _vm.update_hotel.phone_number },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.update_hotel,
+                                "phone_number",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c("label", { attrs: { for: "image" } }, [
+                          _vm._v("Image:")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.update_hotel.image,
+                              expression: "update_hotel.image"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text", id: "image" },
+                          domProps: { value: _vm.update_hotel.image },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.update_hotel,
+                                "image",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group row" }, [
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c("label", { attrs: { for: "email" } }, [
+                          _vm._v("Email:")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.update_hotel.email,
+                              expression: "update_hotel.email"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            placeholder: "email",
+                            id: "email"
+                          },
+                          domProps: { value: _vm.update_hotel.email },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.update_hotel,
+                                "email",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c("label", { attrs: { for: "address" } }, [
+                          _vm._v("Image:")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.update_hotel.image,
+                              expression: "update_hotel.image"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.update_hotel.image },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.update_hotel,
+                                "image",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-default",
+                      attrs: { type: "button", "data-dismiss": "modal" }
+                    },
+                    [_vm._v("Close")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "button" },
+                      on: { click: _vm.updateHotel }
+                    },
+                    [_vm._v("Submit")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]
+      )
     ],
     2
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h4", { staticClass: "modal-title" }, [
+        _vm._v("Update Hotel details")
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
