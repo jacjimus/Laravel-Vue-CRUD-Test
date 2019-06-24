@@ -2048,6 +2048,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -38142,6 +38144,22 @@ var render = function() {
                   }
                 },
                 [_vm._v("Edit room")]
+              ),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "dropdown-item text-danger",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      return _vm.initUpdate(index)
+                    }
+                  }
+                },
+                [_vm._v("Delete room")]
               )
             ])
           ]),

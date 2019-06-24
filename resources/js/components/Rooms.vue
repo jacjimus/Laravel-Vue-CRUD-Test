@@ -13,7 +13,9 @@
                 <div class="col-md-10"><h3>{{room.room_name}}</h3>  </div>
                 <div class="pull-right col-md-2">
                     <a class="dropdown-item text-primary" href="#"
-                       @click="initUpdate(index)">Edit room</a>
+                       @click="initUpdate(index)">Edit room</a> <br />
+                    <a class="dropdown-item text-danger" href="#"
+                       @click="initUpdate(index)">Delete room</a>
 
 
                 </div>
