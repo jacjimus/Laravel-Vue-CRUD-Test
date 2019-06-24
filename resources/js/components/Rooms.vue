@@ -1,9 +1,16 @@
 <template>
     <div class="container">
-        <h2>Hotel Rooms</h2>
+        <div class="row">
+            <div class="col-md-10"><h2>Hotel Rooms</h2></div>
+            <div class="col-md-2 pull-right">
+                <a class="btn btn-success" href="#"
+                   @click="initCreate(index)">Add a room</a>
+            </div>
+        </div>
+
         <div class="card card-body mb-2" v-for="(room, index) in rooms" v-bind:key="room.id">
             <div class="row">
-                <div class="col-md-10"><h3>{{room.name}}</h3>  </div>
+                <div class="col-md-10"><h3>{{room.room_name}}</h3>  </div>
                 <div class="pull-right col-md-2">
                     <a class="dropdown-item text-primary" href="#"
                        @click="initUpdate(index)">Edit room</a>
@@ -14,17 +21,15 @@
             <div class="row">
                 <div class="col-md-6">
                     <p>
-                        {{room.address}} <br>
-                        <span>{{room.country}}</span><br />
-                        <span>{{room.city}}</span><br />
-                        <span>{{room.state}}</span><br />
-                        <span>{{room.zip}}</span><br />
-                        <code>{{room.email}}</code><br />
-                        <code>{{room.phone_number}}</code><br />
+                        {{room.hotel}} <br>
+                        Hotel: <span>{{room.hotel_name}}</span><br />
+                        Capacity: <span>{{room.room_capacity}}</span><br />
+                        Room Type: <span>{{room.room_type}}</span><br />
+
                     </p>
                 </div>
                 <div class="col-md-6">
-                    <img :src= "`${room.image.replace('public' , '')}`"  height="200px" width="250px" @error="">
+                    <img :src= "`../../images/rooms/${room.room_image}`"  height="200px" width="250px" >
                 </div>
             </div>
 
@@ -32,11 +37,11 @@
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" tabindex="-1" role="dialog" id="update-room-model">
+        <div class="modal fade" tabindex="-1" role="dialog" id="create-room-model">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Update Hotel details</h4>
+                        <h4 class="modal-title">Add Hotel room</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
 
                     </div>
@@ -47,78 +52,55 @@
                                 <li v-for="error in errors">{{ error }}</li>
                             </ul>
                         </div>
-                        <form class="form">
+                        <form class="form" id="create-room"  @submit="formSubmit" enctype="multipart/form-data">
                             <input type="hidden" id="_token" :value="csrf">
                             <div class="form-group row">
                                 <div class="col-md-6">
-                                    <label for="name">Name:</label>
-                                    <input type="text" class="form-control" id="name"
-                                           v-model= "update_room.name">
+                                    <label for="room_name">Room Name:</label>
+                                    <input type="text" class="form-control" id="room_name" name="room_name"
+                                           v-model= "room.room_name" />
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="address">Address:</label>
-                                    <input type="text" placeholder="Address" class="form-control"  id="address"
-                                           v-model="update_room.address">
+                                    <label for="hotel_id">Hotel:</label>
+                                    <select v-model="room.hotel_id" name="hotel_id" id="hotel_id" class="browser-default custom-select" tabindex="2">
+
+                                        <option v-for="(hotel, index) in hotels" :key="index" :value="hotel.id">{{ hotel.name }}</option>
+
+                                    </select>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <div class="col-md-6">
-                                    <label for="country">Country:</label>
-                                    <input type="text" placeholder="Country" class="form-control" id="country"
-                                           v-model="update_room.country">
+                                    <label for="room_type_id">Type:</label>
+                                    <select v-model="room.room_type_id" id="room_type_id" name="room_type_id" class="browser-default custom-select" tabindex="2">
+
+                                        <option v-for="(type, index) in room_types" :key="index" :value="type.id">{{ type.room_type }}</option>
+
+                                    </select>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="city">City:</label>
-                                    <input type="text" placeholder="City" class="form-control" id="city"
-                                           v-model="update_room.city">
+                                    <label for="room_capacity_id">Capacity:</label>
+                                    <select v-model="room.room_capacity_id" id="room_capacity_id" name="room_capacity_id"  class="browser-default custom-select" tabindex="2">
+
+                                        <option v-for="(capacity, index) in room_capacities" :key="index" :value="capacity.id">{{ capacity.room_capacity }}</option>
+
+                                    </select>
+                                </div>
+                                <div class="col-md-8">
+                                    <label for="room_image">Image:</label>
+                                    <input type="file" class="form-control" id="room_image" name="room_image"
+                                           v-on:change="onImageChange">
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <div class="col-md-6">
-                                    <label for="state">State:</label>
-                                    <input type="text" placeholder="State" class="form-control" id="state"
-                                           v-model="update_room.state">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="zip">Zip:</label>
-                                    <input type="text" placeholder="Zip" class="form-control" id="zip"
-                                           v-model="update_room.zip">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-6">
-                                    <label for="phone_number">Phone number:</label>
-                                    <input type="text" placeholder="phone_number" class="form-control" id="phone_number"
-                                           v-model="update_room.phone_number">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="image">Image:</label>
-                                    <input type="text" class="form-control" id="image"
-                                           v-model="update_room.image">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-6">
-                                    <label for="email">Email:</label>
-                                    <input type="text" placeholder="email" class="form-control" id="email"
-                                           v-model="update_room.email">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="address">Image:</label>
-                                    <input type="text" class="form-control"
-                                           v-model="update_room.image">
-                                </div>
-                            </div>
 
-                        </form>
-                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" @click="updateHotel" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
-
+                    </form>
+                    </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
@@ -129,38 +111,72 @@
         data(){
             return {
                 rooms: [],
+                hotels: [],
+                room_types: [],
+                room_capacities: [],
                 errors: [],
                 update_room : {},
                 room : {
                     id: '',
-                    name: '',
-                    address : '',
-                    city : '',
-                    state : '',
-                    country : '',
-                    zip : '',
-                    phone_number : '',
-                    email : '',
-                    image : '',
-                    status : ''
+                    room_name: '',
+                    hotel_id: '',
+                    room_type_id: '',
+                    room_capacity_id: '',
+
                 },
                 room_id : '',
-                name : '',
+                image : '',
                 edit : false,
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
             }
         },
         created(){
             this.fetchHotels();
+            this.fetchRooms();
+            this.fetchRoomTypes();
+            this.fetchRoomcapacity();
         },
         methods: {
             fetchHotels(){
+                fetch('api/hotels/')
+                    .then(res => res.json())
+                    .then(res => {
+                        this.hotels = res.data
+
+                    })
+            },
+            fetchRooms(){
                 fetch('api/rooms/')
                     .then(res => res.json())
                     .then(res => {
                         this.rooms = res.data
+                        console.log(this.rooms)
+
 
                     })
+            },
+            fetchRoomTypes(){
+                fetch('api/types')
+                    .then(res => res.json())
+                    .then(res => {
+                        this.room_types = res.data
+
+                    })
+            },
+            fetchRoomcapacity(){
+                fetch('api/capacity')
+                    .then(res => res.json())
+                    .then(res => {
+                        this.room_capacities = res.data
+
+                    })
+            },
+            initCreate()
+            {
+                this.errors = [];
+                $("#create-room-model").modal("show");
+
+
             },
             initUpdate(index)
             {
@@ -170,58 +186,49 @@
 
 
             },
-            updateHotel()
+            onImageChange(e){
+                console.log(e.target.files[0]);
+                this.image = e.target.files[0];
+            },
+            formSubmit(e)
             {
-                axios.put('api/rooms/update', {
-                    room_id: this.update_room.id,
-                    name: this.update_room.name,
-                    address: this.update_room.address,
-                    country: this.update_room.country,
-                    city: this.update_room.city,
-                    state: this.update_room.address,
-                    zip: this.update_room.zip,
-                    phone_number: this.update_room.phone_number,
-                    email: this.update_room.email,
-                    image: this.update_room.image,
-                })
+                e.preventDefault();
+               // let currentObj = this;
+                const config = {
+                    headers: { 'content-type': 'multipart/form-data' }
+                }
+
+
+                let form  = document.getElementById('create-room');
+                var mydata = new FormData(form);
+               // var form_data = $('form#create-room').serializeArray();
+                //
+
+                mydata.append('room_image' , this.image);
+
+                axios.post('api/rooms/save', mydata, config)
                     .then(response => {
 
-                        $("#update-room-model").modal("hide");
+                        $("#create-room-model").modal("hide");
 
                     })
                     .catch(error => {
                         this.errors = [];
-                        // validation for name
-                        if (error.response.data.errors.name) {
-                            this.errors.push(error.response.data.errors.name[0]);
+                        // validation for room name
+                        if (error.response.data.errors.room_name) {
+                            this.errors.push(error.response.data.errors.room_name[0]);
                         }
-                        // validation for address
-                        if (error.response.data.errors.address) {
-                            this.errors.push(error.response.data.errors.address[0]);
+                        // validation for hotel id
+                        if (error.response.data.errors.hotel_id) {
+                            this.errors.push(error.response.data.errors.hotel_id[0]);
                         }
-                        // validation for country
-                        if (error.response.data.errors.country) {
-                            this.errors.push(error.response.data.errors.country[0]);
+                        // validation for room_type id
+                        if (error.response.data.errors.room_type_id) {
+                            this.errors.push(error.response.data.errors.room_type_id[0]);
                         }
-                        // validation for city
-                        if (error.response.data.errors.city) {
-                            this.errors.push(error.response.data.errors.city[0]);
-                        }
-                        // validation for state
-                        if (error.response.data.errors.state) {
-                            this.errors.push(error.response.data.errors.state[0]);
-                        }
-                        // validation for zip
-                        if (error.response.data.errors.zip) {
-                            this.errors.push(error.response.data.errors.zip[0]);
-                        }
-                        // validation for phone_number
-                        if (error.response.data.errors.phone_number) {
-                            this.errors.push(error.response.data.errors.phone_number[0]);
-                        }
-                        // validation for email
-                        if (error.response.data.errors.email) {
-                            this.errors.push(error.response.data.errors.email[0]);
+                        // validation for room_capacity id
+                        if (error.response.data.errors.room_capacity_id) {
+                            this.errors.push(error.response.data.errors.room_capacity_id[0]);
                         }
 
                     });

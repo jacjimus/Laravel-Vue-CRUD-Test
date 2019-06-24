@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rooms;
 use Illuminate\Http\Request;
+use App\Http\Resources\Rooms AS RoomResource;
 
 class RoomsController extends Controller
 {
@@ -13,7 +15,8 @@ class RoomsController extends Controller
      */
     public function index()
     {
-        //
+        $rooms = Rooms::get();
+        return RoomResource::collection($rooms);
     }
 
     /**
@@ -24,7 +27,33 @@ class RoomsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validate room fields
+        $request->validate([
+            'room_name' => 'required',
+            'hotel_id' => 'required',
+            'room_type_id' => 'required',
+            'room_capacity_id' => 'required',
+            'room_image' => 'required',
+           ]);
+
+
+       $room = ($request->isMethod('put')) ? Rooms::findOrFail($request->input('id')) : new Rooms;
+        $room->room_name = $request->input('room_name');
+        $room->hotel_id = $request->input('hotel_id');
+        $room->room_type_id = $request->input('room_type_id');
+        $room->room_capacity_id = $request->input('room_capacity_id');
+
+            if ($request->hasFile('room_image')) {
+                $image = $request->file('room_image');
+
+                $image->move(public_path() . '/images/rooms/',
+                    $image->getClientOriginalName());
+                $room->room_image = $image->getClientOriginalName();
+            }
+            if($room->save())
+                return new RoomResource($room);
+
+
     }
 
     /**
