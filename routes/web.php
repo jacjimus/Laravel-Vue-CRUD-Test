@@ -11,6 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::any('/', function () {
+    return view('hotels');
+});
+
+
+Route::any('/rooms' , function (){
+    return view ('rooms');
 });

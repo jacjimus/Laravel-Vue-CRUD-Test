@@ -5,6 +5,7 @@
             <div class="row">
             <div class="col-md-10"><h3>{{hotel.name}}</h3>  </div>
                 <div class="pull-right col-md-2">
+                    <a class="page-link text-success" :href="rooms">View hotel</a> |
                     <a class="dropdown-item text-primary" href="#"
                            @click="initUpdate(index)">Edit hotel</a>
 
@@ -155,7 +156,7 @@
         },
         methods: {
             fetchHotels(){
-                fetch('api/hotels')
+                fetch('api/hotels/')
                     .then(res => res.json())
                     .then(res => {
                         this.hotels = res.data
@@ -172,7 +173,7 @@
             },
             updateHotel()
             {
-                axios.put('api/hotel/', {
+                axios.put('api/hotels/update', {
                     hotel_id: this.update_hotel.id,
                     name: this.update_hotel.name,
                     address: this.update_hotel.address,

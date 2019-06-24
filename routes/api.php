@@ -16,17 +16,20 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+// Hotels CRUD
+Route::group(['prefix'=>'hotels','as'=>'hotels'], function(){
+    Route::get('/', ['as' => 'index', 'uses' => 'HotelsController@index']);
+    Route::put('update', ['as' => 'update', 'uses' => 'HotelsController@store']);
+});
 
+//Rooms CRUD
+Route::group(['prefix'=>'rooms','as'=>'rooms'], function(){
+    Route::get('/', ['as' => 'index', 'uses' => 'RoomsController@index']);
+    Route::put('update', ['as' => 'update', 'uses' => 'RoomsController@store']);
+});
 // List hotels
 
-Route::get('hotels' , 'HotelsController@index');
 
-//Show single hotel
-Route::get('hotel/{id}' , 'HotelsController@show');
-
-//edit hotel details
-
-Route::put('hotel' , 'HotelsController@store');
 
 Route::fallback(function(){
     return response()->json([

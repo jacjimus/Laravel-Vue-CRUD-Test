@@ -8,6 +8,13 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import Vuetify from 'vuetify';
+
+// Routes information for the Vuw Router
+
+import Routes from '@/js/routes.js';
+
+Vue.use(Vuetify);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -21,6 +28,7 @@ window.Vue = require('vue');
 
 Vue.component('navbar', require('./components/Navbar.vue').default);
 Vue.component('hotels', require('./components/Hotels.vue').default);
+Vue.component('rooms', require('./components/Rooms.vue').default);
 
 
 /**
@@ -31,4 +39,6 @@ Vue.component('hotels', require('./components/Hotels.vue').default);
 
 const app = new Vue({
     el: '#app',
+    router : Routes,
+
 });
