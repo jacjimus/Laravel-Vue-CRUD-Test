@@ -3,7 +3,7 @@
         <h2>Hotels</h2>
         <div class="card card-body mb-2" v-for="(hotel, index) in hotels" v-bind:key="hotel.id">
             <div class="row">
-            <div class="col-md-10"><h3>{{hotel.name}}</h3>  </div>
+            <div class="col-md-10"><h3>{{hotel.hotel_name}}</h3>  </div>
                 <div class="pull-right col-md-2">
                     <a class="page-link text-success" :href="rooms">View hotel</a> |
                     <a class="dropdown-item text-primary" href="#"
@@ -54,7 +54,7 @@
                             <div class="col-md-6">
                                 <label for="name">Name:</label>
                                 <input type="text" class="form-control" id="name"
-                                       v-model= "update_hotel.name">
+                                       v-model= "update_hotel.hotel_name">
                             </div>
                             <div class="col-md-6">
                                 <label for="address">Address:</label>
@@ -175,7 +175,7 @@
             {
                 axios.put('api/hotels/update', {
                     hotel_id: this.update_hotel.id,
-                    name: this.update_hotel.name,
+                    name: this.update_hotel.hotel_name,
                     address: this.update_hotel.address,
                     country: this.update_hotel.country,
                     city: this.update_hotel.city,
@@ -227,6 +227,8 @@
 
                     });
             },
+
+
         }
 
     }

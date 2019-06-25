@@ -15,7 +15,10 @@ class RoomsController extends Controller
      */
     public function index()
     {
-        $rooms = Rooms::get();
+        /*
+         * Get al the active rooms and non-trashed
+         */
+        $rooms = Rooms::where('status' , 1)->where('deleted_at' , null)->get();
         return RoomResource::collection($rooms);
     }
 
@@ -28,12 +31,14 @@ class RoomsController extends Controller
     public function store(Request $request)
     {
         //validate room fields
+
+        //return $request->room_name;
         $request->validate([
             'room_name' => 'required',
             'hotel_id' => 'required',
             'room_type_id' => 'required',
             'room_capacity_id' => 'required',
-            'room_image' => 'required',
+            //'room_image' => 'required',
            ]);
 
 
@@ -53,31 +58,8 @@ class RoomsController extends Controller
             if($room->save())
                 return new RoomResource($room);
 
+   }
 
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -87,6 +69,6 @@ class RoomsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Rooms::find($id)->destroy();
     }
 }

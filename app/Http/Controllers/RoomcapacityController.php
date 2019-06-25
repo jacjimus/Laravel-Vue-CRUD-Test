@@ -14,7 +14,10 @@ class RoomcapacityController extends Controller
      */
     public function index()
     {
-        $room_capacity = RoomCapacity::get();
+        /*
+         * Get all the active room capacities and non-trashed
+         */
+        $room_capacity = RoomCapacity::where('status' , 1)->where('deleted_at' , null)->get();
         return RoomcapacityResource::collection($room_capacity);
     }
 

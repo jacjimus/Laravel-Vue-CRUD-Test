@@ -15,9 +15,9 @@ class HotelsController extends Controller
      */
     public function index()
     {
-        // get Hotels
+        // get all active hotels and non-trashed
 
-        $hotels = Hotels::get();
+        $hotels = Hotels::where('status' , 1)->where('deleted_at' , null)->get();
 
         //return collection of hotels as a resource
 

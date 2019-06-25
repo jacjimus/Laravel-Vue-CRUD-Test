@@ -15,10 +15,13 @@ class Rooms extends JsonResource
     public function toArray($request)
     {
        // return parent::toArray($request);
-
+/*
+ * Modified resource to avoid return records like timestamps
+ */
         return [
+        'id' => $this->id,
         'room_name' => $this->room_name,
-        'hotel_id' => $this->room_name,
+        'hotel_id' => $this->hotel_id,
         'hotel_name' => $this->hotel->name,
         'room_type_id' => $this->room_type_id,
         'room_type' => $this->room_type->room_type,

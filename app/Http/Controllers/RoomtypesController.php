@@ -15,7 +15,10 @@ class RoomtypesController extends Controller
      */
     public function index()
     {
-        $room_types = RoomTypes::get();
+        /*
+         * find only active room types and none trashed
+         */
+        $room_types = RoomTypes::where('status' , 1)->where('deleted_at' , null)->get();
         return RoomtypeResource::collection($room_types);
 
     }

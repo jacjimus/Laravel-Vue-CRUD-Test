@@ -26,7 +26,7 @@ Route::group(['prefix'=>'hotels','as'=>'hotels'], function(){
 Route::group(['prefix'=>'rooms','as'=>'rooms'], function(){
     Route::get('/', ['as' => 'index', 'uses' => 'RoomsController@index']);
     Route::post('save', ['as' => 'save', 'uses' => 'RoomsController@store']);
-    Route::put('update', ['as' => 'update', 'uses' => 'RoomsController@store']);
+    Route::put('edit', ['as' => 'edit', 'uses' => 'RoomsController@store']);
     Route::delete('delete', ['as' => 'delete', 'uses' => 'RoomsController@delete']);
 });
 

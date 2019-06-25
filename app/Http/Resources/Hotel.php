@@ -17,7 +17,7 @@ class Hotel extends JsonResource
        // return parent::toArray($request);
         return [
             'id' => $this->id,
-            'name' => $this->name,
+            'hotel_name' => $this->name,
             'address' => $this->address,
             'city' => $this->city,
             'state' => $this->state,
