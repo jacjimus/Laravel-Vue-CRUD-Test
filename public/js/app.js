@@ -2292,6 +2292,11 @@ __webpack_require__.r(__webpack_exports__);
           _this6.errors.push(error.response.data.errors.room_capacity_id[0]);
         }
       });
+    },
+    roomDelete: function roomDelete(index) {
+      if (confirm("Do you want to remove this room? ")) {
+        axios["delete"]('api/rooms/del/' + index.id).then(function (response) {})["catch"](function (error) {});
+      }
     }
   }
 });
@@ -38279,7 +38284,7 @@ var render = function() {
                   attrs: { href: "#" },
                   on: {
                     click: function($event) {
-                      return _vm.initDelete(index)
+                      return _vm.roomDelete(room)
                     }
                   }
                 },

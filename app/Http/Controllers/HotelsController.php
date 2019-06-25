@@ -17,7 +17,7 @@ class HotelsController extends Controller
     {
         // get all active hotels and non-trashed
 
-        $hotels = Hotels::where('status' , 1)->where('deleted_at' , null)->get();
+        $hotels = Hotels::where('status' , 1)->where('deleted_at' , null)->orderby('created_at' , 'DESC')->get();
 
         //return collection of hotels as a resource
 

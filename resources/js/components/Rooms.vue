@@ -15,7 +15,7 @@
                     <a class="dropdown-item text-primary" href="#"
                        @click="initUpdate(index)">Edit room</a> <br />
                     <a class="dropdown-item text-danger" href="#"
-                       @click="initDelete(index)">Delete room</a>
+                       @click="roomDelete(room)">Delete room</a>
 
 
                 </div>
@@ -332,9 +332,10 @@
 
                  mydata.append('room_image' , this.image);
                  mydata.append('id' , this.room.id);
-/*
-(Update) to the PUT route of the Laravel API
- */
+                /*
+                (Update) to the PUT route of the Laravel API
+                 */
+
                 axios.put('api/rooms/edit', mydata, config)
                     .then(response => {
 
@@ -362,6 +363,21 @@
 
                     });
             },
+            roomDelete(index){
+                if(confirm("Do you want to remove this room? ")){
+
+                    axios.delete('api/rooms/del/'+ index.id)
+                        .then(response => {
+
+
+                        })
+                        .catch(error => {
+
+
+                        });
+                }
+
+            }
         }
 
     }

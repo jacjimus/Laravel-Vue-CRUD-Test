@@ -18,7 +18,7 @@ class RoomsController extends Controller
         /*
          * Get al the active rooms and non-trashed
          */
-        $rooms = Rooms::where('status' , 1)->where('deleted_at' , null)->get();
+        $rooms = Rooms::where('status' , 1)->where('deleted_at' , null)->orderby('created_at' , 'DESC')->get();
         return RoomResource::collection($rooms);
     }
 
@@ -69,6 +69,7 @@ class RoomsController extends Controller
      */
     public function destroy($id)
     {
-        Rooms::find($id)->destroy();
+        Rooms::destroy($id);
+        return response()->json(['success'=>"Room Deleted successfully.", 'id'=>''.$id]);
     }
 }
