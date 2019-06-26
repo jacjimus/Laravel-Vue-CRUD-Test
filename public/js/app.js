@@ -53803,7 +53803,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -53934,15 +53933,6 @@ var render = function() {
                 _c(
                   "a",
                   {
-                    staticClass: "page-link text-success",
-                    attrs: { href: _vm.rooms }
-                  },
-                  [_vm._v("View hotel")]
-                ),
-                _vm._v(" |\n                "),
-                _c(
-                  "a",
-                  {
                     staticClass: "dropdown-item text-primary",
                     attrs: { href: "#" },
                     on: {
@@ -53951,7 +53941,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("Edit hotel")]
+                  [_c("i", { staticClass: "fa fa-edit blue" })]
                 )
               ])
             ]),

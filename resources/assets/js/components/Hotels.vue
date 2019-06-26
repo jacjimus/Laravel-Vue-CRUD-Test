@@ -5,9 +5,8 @@
             <div class="row">
             <div class="col-md-10"><h3>{{hotel.hotel_name}}</h3>  </div>
                 <div class="pull-right col-md-2">
-                    <a class="page-link text-success" :href="rooms">View hotel</a> |
                     <a class="dropdown-item text-primary" href="#"
-                           @click="initUpdate(index)">Edit hotel</a>
+                           @click="initUpdate(index)"><i class="fa fa-edit blue"></i></a>
 
 
                 </div>
