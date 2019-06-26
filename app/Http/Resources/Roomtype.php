@@ -20,7 +20,8 @@ class Roomtype extends JsonResource
         return [
             'id' => $this->id,
             'room_type' => $this->room_type,
-            'status' => $this->status
+            'status' => $this->status,
+            'created_at' => date('Y, M, d', strtotime($this->created_at)),
         ];
     }
 }

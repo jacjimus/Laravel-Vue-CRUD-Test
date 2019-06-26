@@ -33,8 +33,9 @@ Route::group(['prefix'=>'rooms','as'=>'rooms'], function(){
 //Room types CRUD
 Route::group(['prefix'=>'types','as'=>'types'], function(){
     Route::get('/', ['as' => 'index', 'uses' => 'RoomtypesController@index']);
-    Route::put('update', ['as' => 'update', 'uses' => 'RoomtypesController@store']);
-    Route::delete('delete', ['as' => 'delete', 'uses' => 'RoomtypesController@delete']);
+    Route::post('save', ['as' => 'save', 'uses' => 'RoomtypesController@store']);
+    Route::put('edit', ['as' => 'update', 'uses' => 'RoomtypesController@store']);
+    Route::delete('del/{id}', ['as' => 'delete', 'uses' => 'RoomtypesController@destroy']);
 });
 
 //Room capacity CRUD
@@ -44,6 +45,7 @@ Route::group(['prefix'=>'capacity','as'=>'capacity'], function(){
     Route::delete('{id}', ['as' => 'delete', 'uses' => 'RoomcapacityController@delete']);
 });
 // List hotels
+
 
 
 

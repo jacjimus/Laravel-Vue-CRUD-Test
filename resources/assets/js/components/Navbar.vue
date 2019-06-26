@@ -9,6 +9,7 @@
             <ul class="navbar-nav">
                 <router-link tag="a" class="nav-item ml-5 text-white font-weight-bold " to="/">Hotels</router-link>
                 <router-link tag="a" class="nav-item ml-3 text-white font-weight-bold" to="/rooms">Rooms</router-link>
+                <router-link tag="a" class="nav-item ml-3 text-white font-weight-bold" to="/types">Room types</router-link>
             </ul>
         </div>
     </nav>

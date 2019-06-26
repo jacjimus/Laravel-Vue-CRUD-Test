@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../kcb/2jiajiri/.idea/2jiajiri.iml" filepath="$PROJECT_DIR$/../kcb/2jiajiri/.idea/2jiajiri.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/hotel.iml" filepath="$PROJECT_DIR$/.idea/hotel.iml" />
     </modules>
   </component>

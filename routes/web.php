@@ -11,11 +11,11 @@
 |
 */
 
-Route::any('/', function () {
-    return view('hotels');
+Route::get('/', function () {
+    return view('welcome');
 });
 
+Auth::routes();
 
-Route::any('/rooms' , function (){
-    return view ('rooms');
-});
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/{catchall?}', 'HomeController@index')->where('catchall', '(.*)');
