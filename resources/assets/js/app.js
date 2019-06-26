@@ -45,6 +45,10 @@ let routes = [{
     {
         path: '/types',
         component: require('./components/Roomtypes.vue')
+    },
+    {
+        path: '/prices',
+        component: require('./components/Prices.vue')
     }
 ]
 const router = new VueRouter({

@@ -38,6 +38,22 @@ Route::group(['prefix'=>'types','as'=>'types'], function(){
     Route::delete('del/{id}', ['as' => 'delete', 'uses' => 'RoomtypesController@destroy']);
 });
 
+//Room type prices
+Route::group(['prefix'=>'prices','as'=>'types'], function(){
+    Route::get('/', ['as' => 'index', 'uses' => 'PricesController@index']);
+    Route::post('save', ['as' => 'save', 'uses' => 'PricesController@store']);
+    Route::put('edit', ['as' => 'update', 'uses' => 'PricesController@store']);
+    Route::delete('del/{id}', ['as' => 'delete', 'uses' => 'PricesController@destroy']);
+});
+
+//Seasons
+Route::group(['prefix'=>'seasons','as'=>'types'], function(){
+    Route::get('/', ['as' => 'index', 'uses' => 'SeasonsController@index']);
+    Route::post('save', ['as' => 'save', 'uses' => 'SeasonsController@store']);
+    Route::put('edit', ['as' => 'update', 'uses' => 'SeasonsController@store']);
+    Route::delete('del/{id}', ['as' => 'delete', 'uses' => 'SeasonsController@destroy']);
+});
+
 //Room capacity CRUD
 Route::group(['prefix'=>'capacity','as'=>'capacity'], function(){
     Route::get('/', ['as' => 'index', 'uses' => 'RoomcapacityController@index']);

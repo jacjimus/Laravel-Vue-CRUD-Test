@@ -56,7 +56,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="index3.html" class="brand-link">
                 <img src="./img/logo.JPG" alt="Lara Start Logo" class="brand-image img-circle elevation-3"
                     style="opacity: .8">
-                <span class="brand-text font-weight-light">Lara Start</span>
+                <span class="brand-text font-weight-light">Bookings</span>
             </a>
 
             <!-- Sidebar -->
@@ -100,6 +100,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <i class="nav-icon fas fa-home orange"></i>
                                 <p>
                                     Rooms
+
+                                </p>
+                            </router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link to="/prices" class="nav-link">
+                                <i class="nav-icon fas fa-shopping-cart red"></i>
+                                <p>
+                                    Room Prices
 
                                 </p>
                             </router-link>

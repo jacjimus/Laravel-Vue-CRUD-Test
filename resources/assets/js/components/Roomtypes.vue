@@ -1,39 +1,56 @@
 <template>
     <div class="container">
         <div class="row">
-            <div class="col-md-10"><h2>Rooms types</h2></div>
-            <div class="col-md-2 pull-right">
-                <a class="btn btn-success" href="#"
-                   @click="initCreate()">Add a type</a>
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Room types</h3>
+
+                        <div class="card-tools">
+                            <button @click="initCreate()" class="btn btn-success" >
+                                Add New
+                                <i class="fas fa-home fa-fw"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover">
+
+                            <thead>
+                            <th>Room type</th>
+                            <th>Status</th>
+                            <th>Created at</th>
+                            <th>Created at</th>
+                            </thead>
+                            <tbody>
+                            <tr v-for="(type, index) in types" v-bind:key="type.id">
+
+                                <td >{{type.room_type}}</td>
+                                <td >{{type.status}}</td>
+                                <td >{{type.created_at}}</td>
+                                <td >
+                                    <a  href="#"
+                                        @click="initUpdate(index)"><i class="fa fa-edit blue"></i> </a> |
+                                    <a href="#"
+                                       @click="typeDelete(type)"><i class="fa fa-trash red"></i></a>
+
+
+
+                                </td>
+
+
+                            </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
             </div>
         </div>
-<table class="table table-hover">
-    <thead>
-    <th>Room type</th>
-    <th>Status</th>
-    <th>Created at</th>
-    <th>Created at</th>
-    </thead>
-    <tbody>
-        <tr v-for="(type, index) in types" v-bind:key="type.id">
 
-                <td >{{type.room_type}}</td>
-                <td >{{type.status}}</td>
-                <td >{{type.created_at}}</td>
-                <td >
-                    <a  href="#"
-                       @click="initUpdate(index)"><i class="fa fa-edit blue"></i> </a> |
-                    <a href="#"
-                       @click="typeDelete(type)"><i class="fa fa-trash red"></i></a>
-
-
-
-            </td>
-
-
-        </tr>
-    </tbody>
-</table>
 
         <!-- Create Modal Form -->
         <div class="modal fade" tabindex="-1" role="dialog" id="create-type-model">

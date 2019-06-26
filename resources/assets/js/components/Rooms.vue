@@ -10,7 +10,7 @@
 
         <div class="card card-body mb-2" v-for="(room, index) in rooms" v-bind:key="room.id">
             <div class="row">
-                <div class="col-md-10"><h3>{{room.hotel_name}}</h3>  </div>
+                <div class="col-md-10"><h3>{{room.room_name}}</h3>  </div>
                 <div class="pull-right col-md-2">
                     <a class="dropdown-item text-primary" href="#"
                        @click="initUpdate(index)">Edit room</a> <br />
@@ -206,6 +206,9 @@
             this.fetchRooms();
             this.fetchRoomTypes();
             this.fetchRoomcapacity();
+        },
+        mounted() {
+            this.this.fetchRooms();
         },
         methods: {
             fetchHotels(){
