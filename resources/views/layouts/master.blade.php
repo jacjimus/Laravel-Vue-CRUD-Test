@@ -116,11 +116,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         <li class="nav-item">
                             <router-link to="/types" class="nav-link">
-                                <i class="nav-icon fas fa-coffee blue"></i>
+                                <i class="nav-icon fas fa-coffee yellow"></i>
                                 <p>
                                     Room types
 
                                 </p>
+                            </router-link>
+                        </li>
+
+                        <li class="nav-item">
+                            <router-link to="/bookings" class="nav-link">
+                                <i class="nav-icon fas fa-calendar-week blue"></i>
+                                <p>Room Bookings</p>
                             </router-link>
                         </li>
 
