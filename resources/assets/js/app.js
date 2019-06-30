@@ -7,11 +7,23 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+
 import {Form, HasError, AlertError} from 'vform'
 window.Form = Form;
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
 
+import swal from 'sweetalert2';
+
+window.swal = swal;
+const toast = swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000
+});
+
+window.toast = toast;
 
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
@@ -55,6 +67,8 @@ const router = new VueRouter({
     mode: 'history',
     routes // short for `routes: routes`
 })
+
+window.Fire = new Vue();
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

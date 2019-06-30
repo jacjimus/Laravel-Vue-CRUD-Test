@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <h2>Hotels</h2>
-        <div class="card card-body mb-2" v-for="hotel in hotels" :key="hotel.id">
+        <div class="card card-body mb-2" v-for="(hotel, index) in hotels" :key="hotel.id">
                      <div class="row">
                         <div class="col-md-10"><h3>{{hotel.hotel_name}}</h3>  </div>
                         <div class="pull-right col-md-2">
@@ -151,6 +151,7 @@
         },
         created(){
             this.fetchHotels();
+            Fire.$on('AfterCreate', () => {this.fetchHotels()});
         },
         methods: {
             fetchHotels(){
@@ -181,7 +182,12 @@
                 })
                     .then(response => {
 
+                        Fire.$emit('AfterCreate');
                         $("#update-hotel-model").modal("hide");
+                        toast.fire({
+                            type: 'success',
+                            title: 'Hotel updated successfully'
+                        })
 
                     })
 

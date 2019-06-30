@@ -24,7 +24,7 @@
                             <th>Created at</th>
                             </thead>
                             <tbody>
-                            <tr v-for="(type, index) in types" v-bind:key="type.id">
+                            <tr v-for="(type, index) in types" :key="type.id">
 
                                 <td >{{type.room_type}}</td>
                                 <td >{{type.status}}</td>
@@ -63,18 +63,15 @@
                     </div>
                     <div class="modal-body">
 
-                        <div class="alert alert-danger" v-if="errors.length > 0">
-                            <ul>
-                                <li v-for="error in errors">{{ error }}</li>
-                            </ul>
-                        </div>
-                        <form class="form" id="create-type"  @submit="formSubmit">
+
+                        <form class="form" id="create-type"  @submit.prevent="formSubmit">
                             <input type="hidden" id="_token" :value="csrf">
                             <div class="form-group row">
                                 <div class="col-md-6">
                                     <label for="room_type">Room Type:</label>
-                                    <input type="text" class="form-control" id="room_type" name="room_type"
-                                           v-model= "type.room_type" />
+                                    <input type="text" class="form-control" id="room_type" name="room_type" :class="{ 'is-invalid': form.errors.has('room_type') }"
+                                           v-model= "form.room_type" />
+                                    <has-error :form="form" field="room_type"></has-error>
                                 </div>
 
                             </div>
@@ -101,18 +98,14 @@
                     </div>
                     <div class="modal-body">
 
-                        <div class="alert alert-danger" v-if="errors.length > 0">
-                            <ul>
-                                <li v-for="error in errors">{{ error }}</li>
-                            </ul>
-                        </div>
+
                         <form class="form" id="edit-type"  @submit="formEditSubmit" >
                             <input type="hidden" id="_token" :value="csrf">
                             <div class="form-group row">
                                 <div class="col-md-6">
                                     <label for="room_type">Room Name:</label>
                                     <input type="text" class="form-control" name="room_type"
-                                           v-model= "type.room_type" />
+                                           v-model= "form.room_type" />
                                 </div>
                             </div>
 
@@ -133,12 +126,12 @@
     export default{
         data(){
             return {
-                types: [],
-                errors: [],
-                 type : {
+                types: {},
+                type: {},
+                 form : new Form({
                     id: '',
                      room_type: '',
-                         },
+                         }),
                 type_id : '',
                 edit : false,
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
@@ -146,16 +139,16 @@
         },
         created(){
             this.fetchTypes();
+            Fire.$on('AfterCreate' , () => {this.fetchTypes()});
                   },
         methods: {
             fetchTypes(){
                 axios.get('api/types')
-                    .then(({res}) => ( this.types = res))
+                    .then(({data}) => ( this.types = data.data))
             },
 
      initCreate()
             {
-                this.errors = [];
                 this.type = [];
                 $('#create-form').trigger('reset');
                 $("#create-type-model").modal("show");
@@ -164,44 +157,35 @@
             },
             initUpdate(index)
             {
-                this.errors = [];
                 this.edit = true;
                 $("#edit-type-model").modal("show");
                 this.type = this.types[index];
 
 
+
             },
 
-            formSubmit(e)
+            formSubmit()
             {
-                e.preventDefault();
-
-
                 let form  = document.getElementById('create-type');
                 var mydata = new FormData(form);
-                // var form_data = $('form#create-type').serializeArray();
-                //
+                this.form.post('api/types/save', mydata).then(() => {
+                    Fire.$emit("AfterCreate");
+                    toast.fire({
+                        type: 'success',
+                        title: 'Room type created successfully'
+                    })
+                    $("#create-type-model").modal("hide");
 
-                axios.post('api/types/save', mydata)
+                }).catch()
                     .then(response => {
 
-                        $("#create-type-model").modal("hide");
 
                     })
-                    .catch(error => {
-                        this.errors = [];
-                        // validation for room type
-                        if (error.response.data.errors.room_type) {
-                            this.errors.push(error.response.data.errors.room_type[0]);
-                        }
 
-
-                    });
             },
-            formEditSubmit(e)
+            formEditSubmit()
             {
-                e.preventDefault();
-
 
                 /*
                 *Converting form to accept files
@@ -223,15 +207,7 @@
                         $("#edit-type-model").modal("hide");
 
                     })
-                    .catch(error => {
-                        this.errors = [];
-                        // validation for room type
-                        if (error.response.data.errors.room_type) {
-                            this.errors.push(error.response.data.errors.room_type[0]);
-                        }
 
-
-                    });
             },
             typeDelete(index){
                 if(confirm("Do you want to remove this room type? ")){
