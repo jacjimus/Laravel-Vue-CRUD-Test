@@ -38,7 +38,7 @@ class RoomsController extends Controller
             'hotel_id' => 'required',
             'room_type_id' => 'required',
             'room_capacity_id' => 'required',
-            //'room_image' => 'required',
+            'room_image' => 'required',
            ]);
 
 

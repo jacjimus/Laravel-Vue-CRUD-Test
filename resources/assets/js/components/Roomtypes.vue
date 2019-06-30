@@ -24,16 +24,16 @@
                             <th>Created at</th>
                             </thead>
                             <tbody>
-                            <tr v-for="(type, index) in types" :key="type.id">
+                            <tr v-for="(type) in types" :key="type.id">
 
                                 <td >{{type.room_type}}</td>
                                 <td >{{type.status}}</td>
                                 <td >{{type.created_at}}</td>
                                 <td >
                                     <a  href="#"
-                                        @click="initUpdate(index)"><i class="fa fa-edit blue"></i> </a> |
+                                        @click="initUpdate(type)"><i class="fa fa-edit blue"></i> </a> |
                                     <a href="#"
-                                       @click="typeDelete(type)"><i class="fa fa-trash red"></i></a>
+                                       @click="typeDelete(type.id)"><i class="fa fa-trash red"></i></a>
 
 
 
@@ -53,18 +53,19 @@
 
 
         <!-- Create Modal Form -->
-        <div class="modal fade" tabindex="-1" role="dialog" id="create-type-model">
+        <div class="modal fade" tabindex="-1" role="dialog" id="type-modal">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Add room type</h4>
+                        <h4 v-show="!editMode" class="modal-title">Add room type</h4>
+                        <h4 v-show="editMode" class="modal-title">Edit room type</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
 
                     </div>
                     <div class="modal-body">
 
 
-                        <form class="form" id="create-type"  @submit.prevent="formSubmit">
+                        <form class="form" id="form-type"  @submit.prevent="!editMode ? formSubmit() : formEditSubmit()">
                             <input type="hidden" id="_token" :value="csrf">
                             <div class="form-group row">
                                 <div class="col-md-6">
@@ -87,39 +88,7 @@
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
 
-        <!-- Edit modal Form starts here -->
-        <div class="modal fade" tabindex="-1" role="dialog" id="edit-type-model">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Edit Room type</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
 
-                    </div>
-                    <div class="modal-body">
-
-
-                        <form class="form" id="edit-type"  @submit="formEditSubmit" >
-                            <input type="hidden" id="_token" :value="csrf">
-                            <div class="form-group row">
-                                <div class="col-md-6">
-                                    <label for="room_type">Room Name:</label>
-                                    <input type="text" class="form-control" name="room_type"
-                                           v-model= "form.room_type" />
-                                </div>
-                            </div>
-
-
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                        </form>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
     </div>
 </template>
 <script>
@@ -127,13 +96,11 @@
         data(){
             return {
                 types: {},
-                type: {},
+                editMode: false,
                  form : new Form({
-                    id: '',
+                     id: '',
                      room_type: '',
                          }),
-                type_id : '',
-                edit : false,
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
             }
         },
@@ -149,17 +116,18 @@
 
      initCreate()
             {
-                this.type = [];
-                $('#create-form').trigger('reset');
-                $("#create-type-model").modal("show");
+                this.editMode = false;
+                this.form.reset();
+                $("#type-modal").modal("show");
 
 
             },
-            initUpdate(index)
+      initUpdate(type)
             {
-                this.edit = true;
-                $("#edit-type-model").modal("show");
-                this.type = this.types[index];
+                this.editMode = true;
+                this.form.reset();
+                $("#type-modal").modal("show");
+                this.form.fill(type);
 
 
 
@@ -167,15 +135,15 @@
 
             formSubmit()
             {
-                let form  = document.getElementById('create-type');
-                var mydata = new FormData(form);
+                let myform  = document.getElementById('form-type');
+                var mydata = new FormData(myform);
                 this.form.post('api/types/save', mydata).then(() => {
                     Fire.$emit("AfterCreate");
                     toast.fire({
                         type: 'success',
                         title: 'Room type created successfully'
                     })
-                    $("#create-type-model").modal("hide");
+                    $("#type-modal").modal("hide");
 
                 }).catch()
                     .then(response => {
@@ -192,36 +160,58 @@
                  */
 
 
-                let form  = document.getElementById('edit-type');
-                var mydata = new FormData(form);
+                let myform  = document.getElementById('form-type');
+                var mydata = new FormData(myform);
 
 
-                mydata.append('id' , this.type.id);
+                mydata.append('id' , this.form.id);
                 /*
                 (Update) to the PUT route of the Laravel API
                  */
 
-                axios.put('api/types/edit', mydata)
+                this.form.put('api/types/edit', mydata).then(() => {
+                    Fire.$emit("AfterCreate");
+                    toast.fire({
+                        type: 'success',
+                        title: 'Room type updated successfully'
+                    })
+                    $("#type-modal").modal("hide");
+
+                }).catch()
                     .then(response => {
 
-                        $("#edit-type-model").modal("hide");
 
                     })
 
             },
-            typeDelete(index){
-                if(confirm("Do you want to remove this room type? ")){
+            typeDelete(id){
+                swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.value) {
+                        this.form.delete('api/types/del/' + id).then(() => {
 
-                    axios.delete('api/types/del/'+ index.id)
-                        .then(response => {
-
-
-                        })
-                        .catch(error => {
-
+                            Fire.$emit('AfterCreate');
+                            toast.fire({
+                                    type: 'success',
+                                    title: 'Room type deleted successfully'
+                                }
+                            )
 
                         });
-                }
+                    }
+
+
+                })
+
+
+
 
             }
         }

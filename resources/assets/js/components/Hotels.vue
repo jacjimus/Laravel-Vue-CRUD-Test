@@ -43,7 +43,7 @@
                     <div class="modal-body">
 
 
-                            <form class="form" @submit.prevent="editHotel">
+                            <form class="form" id="hotel-form" @submit.prevent="editHotel">
                                 <input type="hidden" id="_token" :value="csrf">
                         <div class="form-group row">
                             <div class="col-md-6">
@@ -143,9 +143,8 @@
                     image : '',
                     status : ''
                 }),
-                hotel_id : '',
-                name : '',
-                edit : false,
+
+                edit : true,
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
             }
         },
@@ -158,27 +157,23 @@
                 axios.get('api/hotels')
                     .then(({data}) => ( this.hotels = data.data) )
             },
-            initUpdate(index)
+            initUpdate(hotel)
             {
-                this.errors = [];
+                this.form.reset();
                 $("#update-hotel-model").modal("show");
-               this.update_hotel = this.hotels[index];
+               this.form.fill(hotel);
 
 
             },
             updateHotel()
             {
-                axios.put('api/hotels/update', {
-                    hotel_id: this.update_hotel.id,
-                    name: this.update_hotel.hotel_name,
-                    address: this.update_hotel.address,
-                    country: this.update_hotel.country,
-                    city: this.update_hotel.city,
-                    state: this.update_hotel.address,
-                    zip: this.update_hotel.zip,
-                    phone_number: this.update_hotel.phone_number,
-                    email: this.update_hotel.email,
-                    image: this.update_hotel.image,
+                let myform  = document.getElementById('hotel-form');
+                var mydata = new FormData(myform);
+
+
+                mydata.append('id' , this.form.id);
+                this.form.put('api/hotels/update', {
+
                 })
                     .then(response => {
 

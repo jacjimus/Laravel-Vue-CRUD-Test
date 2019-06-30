@@ -53840,9 +53840,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 image: '',
                 status: ''
             }),
-            hotel_id: '',
-            name: '',
-            edit: false,
+
+            edit: true,
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         };
     },
@@ -53864,24 +53863,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return _this2.hotels = data.data;
             });
         },
-        initUpdate: function initUpdate(index) {
-            this.errors = [];
+        initUpdate: function initUpdate(hotel) {
+            this.form.reset();
             $("#update-hotel-model").modal("show");
-            this.update_hotel = this.hotels[index];
+            this.form.fill(hotel);
         },
         updateHotel: function updateHotel() {
-            axios.put('api/hotels/update', {
-                hotel_id: this.update_hotel.id,
-                name: this.update_hotel.hotel_name,
-                address: this.update_hotel.address,
-                country: this.update_hotel.country,
-                city: this.update_hotel.city,
-                state: this.update_hotel.address,
-                zip: this.update_hotel.zip,
-                phone_number: this.update_hotel.phone_number,
-                email: this.update_hotel.email,
-                image: this.update_hotel.image
-            }).then(function (response) {
+            var myform = document.getElementById('hotel-form');
+            var mydata = new FormData(myform);
+
+            mydata.append('id', this.form.id);
+            this.form.put('api/hotels/update', {}).then(function (response) {
 
                 Fire.$emit('AfterCreate');
                 $("#update-hotel-model").modal("hide");
@@ -54000,6 +53992,7 @@ var render = function() {
                     "form",
                     {
                       staticClass: "form",
+                      attrs: { id: "hotel-form" },
                       on: {
                         submit: function($event) {
                           $event.preventDefault()
@@ -54677,15 +54670,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             form: new Form({
+                id: '',
                 room_name: '',
                 hotel_id: '',
                 room_type_id: '',
-                room_capacity_id: ''
+                room_capacity_id: '',
+                image: ''
             }),
             rooms: [],
             hotels: [],
@@ -54695,102 +54691,97 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             update_room: {},
             room_id: '',
             image: '',
-            edit: false,
+            editMode: false,
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         };
     },
     created: function created() {
+        var _this = this;
+
         this.fetchHotels();
         this.fetchRooms();
         this.fetchRoomTypes();
         this.fetchRoomcapacity();
+        Fire.$on('NeedRefresh', function () {
+            _this.fetchRooms();
+        });
     },
-    mounted: function mounted() {
-        console.log('Component mounted');
-        this.fetchRooms();
-    },
+
 
     methods: {
         fetchHotels: function fetchHotels() {
-            var _this = this;
+            var _this2 = this;
 
             axios.get('api/hotels/').then(function (_ref) {
                 var data = _ref.data;
-                return _this.hotels = data.data;
+                return _this2.hotels = data.data;
             });
         },
         fetchRooms: function fetchRooms() {
-            var _this2 = this;
+            var _this3 = this;
 
             axios.get('api/rooms/').then(function (_ref2) {
                 var data = _ref2.data;
-                return _this2.rooms = data.data;
+                return _this3.rooms = data.data;
             });
         },
         fetchRoomTypes: function fetchRoomTypes() {
-            var _this3 = this;
+            var _this4 = this;
 
             axios.get('api/types').then(function (_ref3) {
                 var data = _ref3.data;
-                return _this3.room_types = data.data;
+                return _this4.room_types = data.data;
             });
         },
         fetchRoomcapacity: function fetchRoomcapacity() {
-            var _this4 = this;
+            var _this5 = this;
 
             axios.get('api/capacity').then(function (_ref4) {
                 var data = _ref4.data;
-                return _this4.room_capacities = data.data;
+                return _this5.room_capacities = data.data;
             });
         },
         initCreate: function initCreate() {
+            this.editMode = false;
             this.form.reset();
-            this.form.errors.clear();
-            $('#create-form').trigger('reset');
-            $("#create-room-model").modal("show");
+            $("#room-modal").modal("show");
         },
-        initUpdate: function initUpdate(index) {
-            this.errors = [];
-            this.edit = true;
-            $("#edit-room-model").modal("show");
-            this.room = this.rooms[index];
+        initUpdate: function initUpdate(room) {
+            this.editMode = true;
+            $("#room-modal").modal("show");
+            this.form.fill(room);
         },
         onImageChange: function onImageChange(e) {
-            console.log(e.target.files[0]);
             this.image = e.target.files[0];
         },
-        formSubmit: function formSubmit(e) {
-            e.preventDefault();
-            /*
-            *Converting form to accept files
-             */
+        formSubmit: function formSubmit() {
+
             var config = {
                 headers: { 'content-type': 'multipart/form-data' }
             };
 
-            var form = document.getElementById('create-room');
-            var mydata = new FormData(form);
+            var myform = document.getElementById('form-room');
+            var mydata = new FormData(myform);
 
             mydata.append('room_image', this.image);
 
             this.form.post('api/rooms/save', mydata, config).then(function (response) {
 
-                $("#create-room-model").modal("hide");
+                Fire.$emit("NeedRefresh");
+                toast.fire({
+                    type: 'success',
+                    title: 'Room created!'
+                });
+                $("#room-modal").modal("hide");
             });
         },
-        formEditSubmit: function formEditSubmit(e) {
-            var _this5 = this;
+        formEditSubmit: function formEditSubmit() {
 
-            e.preventDefault();
-
-            /*
-            *Converting form to accept files
-             */
             var config = {
                 headers: { 'content-type': 'multipart/form-data' }
             };
 
-            var myform = document.getElementById('edit-room');
+            var myform = document.getElementById('form-room');
             var mydata = new FormData(myform);
 
             // var form_data = $('form#create-room').serializeArray();
@@ -54798,39 +54789,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
             mydata.append('room_image', this.image);
-            mydata.append('id', this.room.id);
+            mydata.append('id', this.form.id);
             /*
             (Update) to the PUT route of the Laravel API
              */
 
-            axios.put('api/rooms/edit', mydata, config).then(function (response) {
+            this.form.put('api/rooms/edit', mydata, config).then(function (response) {
+                Fire.$emit("NeedRefresh");
+                toast.fire({
+                    type: 'success',
+                    title: 'Record updated!'
+                });
+                $("#room-modal").modal("hide");
+            }).catch(function (error) {});
+        },
+        roomDelete: function roomDelete(id) {
+            var _this6 = this;
 
-                $("#edit-room-model").modal("hide");
-            }).catch(function (error) {
-                _this5.errors = [];
-                // validation for room name
-                if (error.response.data.errors.room_name) {
-                    _this5.errors.push(error.response.data.errors.room_name[0]);
-                }
-                // validation for hotel id
-                if (error.response.data.errors.hotel_id) {
-                    _this5.errors.push(error.response.data.errors.hotel_id[0]);
-                }
-                // validation for room_type id
-                if (error.response.data.errors.room_type_id) {
-                    _this5.errors.push(error.response.data.errors.room_type_id[0]);
-                }
-                // validation for room_capacity id
-                if (error.response.data.errors.room_capacity_id) {
-                    _this5.errors.push(error.response.data.errors.room_capacity_id[0]);
+            swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then(function (result) {
+                if (result.value) {
+                    _this6.form.delete('api/rooms/del/' + id).then(function () {
+
+                        Fire.$emit('NeedRefresh');
+                        toast.fire({
+                            type: 'success',
+                            title: 'Room deleted successfully'
+                        });
+                    });
                 }
             });
-        },
-        roomDelete: function roomDelete(index) {
-            if (confirm("Do you want to remove this room? ")) {
-
-                axios.delete('api/rooms/del/' + index.id).then(function (response) {}).catch(function (error) {});
-            }
         }
     }
 
@@ -54868,7 +54863,7 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._l(_vm.rooms, function(room, index) {
+      _vm._l(_vm.rooms, function(room) {
         return _c("div", { key: room.id, staticClass: "card card-body mb-2" }, [
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col-md-10" }, [
@@ -54883,7 +54878,7 @@ var render = function() {
                   attrs: { href: "#" },
                   on: {
                     click: function($event) {
-                      return _vm.initUpdate(index)
+                      return _vm.initUpdate(room)
                     }
                   }
                 },
@@ -54899,7 +54894,7 @@ var render = function() {
                   attrs: { href: "#" },
                   on: {
                     click: function($event) {
-                      return _vm.roomDelete(room)
+                      return _vm.roomDelete(room.id)
                     }
                   }
                 },
@@ -54941,7 +54936,7 @@ var render = function() {
         "div",
         {
           staticClass: "modal fade",
-          attrs: { tabindex: "-1", role: "dialog", id: "create-room-model" }
+          attrs: { tabindex: "-1", role: "dialog", id: "room-modal" }
         },
         [
           _c(
@@ -54949,21 +54944,54 @@ var render = function() {
             { staticClass: "modal-dialog", attrs: { role: "document" } },
             [
               _c("div", { staticClass: "modal-content" }, [
-                _vm._m(1),
+                _c("div", { staticClass: "modal-header" }, [
+                  _c(
+                    "h4",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: !_vm.editMode,
+                          expression: "!editMode"
+                        }
+                      ],
+                      staticClass: "modal-title"
+                    },
+                    [_vm._v("Add Hotel room")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "h4",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.editMode,
+                          expression: "editMode"
+                        }
+                      ],
+                      staticClass: "modal-title"
+                    },
+                    [_vm._v("Edit Hotel room")]
+                  ),
+                  _vm._v(" "),
+                  _vm._m(1)
+                ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-body" }, [
                   _c(
                     "form",
                     {
                       staticClass: "form",
-                      attrs: {
-                        id: "create-room",
-                        enctype: "multipart/form-data"
-                      },
+                      attrs: { id: "form-room" },
                       on: {
                         submit: function($event) {
                           $event.preventDefault()
-                          return _vm.formSubmit($event)
+                          !_vm.editMode
+                            ? _vm.formSubmit()
+                            : _vm.formEditSubmit()
                         },
                         keydown: function($event) {
                           return _vm.form.onKeydown($event)
@@ -55295,22 +55323,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c("h4", { staticClass: "modal-title" }, [_vm._v("Add Hotel room")]),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      )
-    ])
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
   },
   function() {
     var _vm = this
@@ -55489,49 +55513,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             types: {},
-            type: {},
+            editMode: false,
             form: new Form({
                 id: '',
                 room_type: ''
             }),
-            type_id: '',
-            edit: false,
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         };
     },
@@ -55554,25 +55545,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         initCreate: function initCreate() {
-            this.type = [];
-            $('#create-form').trigger('reset');
-            $("#create-type-model").modal("show");
+            this.editMode = false;
+            this.form.reset();
+            $("#type-modal").modal("show");
         },
-        initUpdate: function initUpdate(index) {
-            this.edit = true;
-            $("#edit-type-model").modal("show");
-            this.type = this.types[index];
+        initUpdate: function initUpdate(type) {
+            this.editMode = true;
+            this.form.reset();
+            $("#type-modal").modal("show");
+            this.form.fill(type);
         },
         formSubmit: function formSubmit() {
-            var form = document.getElementById('create-type');
-            var mydata = new FormData(form);
+            var myform = document.getElementById('form-type');
+            var mydata = new FormData(myform);
             this.form.post('api/types/save', mydata).then(function () {
                 Fire.$emit("AfterCreate");
                 toast.fire({
                     type: 'success',
                     title: 'Room type created successfully'
                 });
-                $("#create-type-model").modal("hide");
+                $("#type-modal").modal("hide");
             }).catch().then(function (response) {});
         },
         formEditSubmit: function formEditSubmit() {
@@ -55581,24 +55573,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             *Converting form to accept files
              */
 
-            var form = document.getElementById('edit-type');
-            var mydata = new FormData(form);
+            var myform = document.getElementById('form-type');
+            var mydata = new FormData(myform);
 
-            mydata.append('id', this.type.id);
+            mydata.append('id', this.form.id);
             /*
             (Update) to the PUT route of the Laravel API
              */
 
-            axios.put('api/types/edit', mydata).then(function (response) {
-
-                $("#edit-type-model").modal("hide");
-            });
+            this.form.put('api/types/edit', mydata).then(function () {
+                Fire.$emit("AfterCreate");
+                toast.fire({
+                    type: 'success',
+                    title: 'Room type updated successfully'
+                });
+                $("#type-modal").modal("hide");
+            }).catch().then(function (response) {});
         },
-        typeDelete: function typeDelete(index) {
-            if (confirm("Do you want to remove this room type? ")) {
+        typeDelete: function typeDelete(id) {
+            var _this3 = this;
 
-                axios.delete('api/types/del/' + index.id).then(function (response) {}).catch(function (error) {});
-            }
+            swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then(function (result) {
+                if (result.value) {
+                    _this3.form.delete('api/types/del/' + id).then(function () {
+
+                        Fire.$emit('AfterCreate');
+                        toast.fire({
+                            type: 'success',
+                            title: 'Room type deleted successfully'
+                        });
+                    });
+                }
+            });
         }
     }
 
@@ -55646,7 +55660,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "tbody",
-                _vm._l(_vm.types, function(type, index) {
+                _vm._l(_vm.types, function(type) {
                   return _c("tr", { key: type.id }, [
                     _c("td", [_vm._v(_vm._s(type.room_type))]),
                     _vm._v(" "),
@@ -55661,7 +55675,7 @@ var render = function() {
                           attrs: { href: "#" },
                           on: {
                             click: function($event) {
-                              return _vm.initUpdate(index)
+                              return _vm.initUpdate(type)
                             }
                           }
                         },
@@ -55674,7 +55688,7 @@ var render = function() {
                           attrs: { href: "#" },
                           on: {
                             click: function($event) {
-                              return _vm.typeDelete(type)
+                              return _vm.typeDelete(type.id)
                             }
                           }
                         },
@@ -55695,7 +55709,7 @@ var render = function() {
       "div",
       {
         staticClass: "modal fade",
-        attrs: { tabindex: "-1", role: "dialog", id: "create-type-model" }
+        attrs: { tabindex: "-1", role: "dialog", id: "type-modal" }
       },
       [
         _c(
@@ -55703,18 +55717,52 @@ var render = function() {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(1),
+              _c("div", { staticClass: "modal-header" }, [
+                _c(
+                  "h4",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: !_vm.editMode,
+                        expression: "!editMode"
+                      }
+                    ],
+                    staticClass: "modal-title"
+                  },
+                  [_vm._v("Add room type")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "h4",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.editMode,
+                        expression: "editMode"
+                      }
+                    ],
+                    staticClass: "modal-title"
+                  },
+                  [_vm._v("Edit room type")]
+                ),
+                _vm._v(" "),
+                _vm._m(1)
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c(
                   "form",
                   {
                     staticClass: "form",
-                    attrs: { id: "create-type" },
+                    attrs: { id: "form-type" },
                     on: {
                       submit: function($event) {
                         $event.preventDefault()
-                        return _vm.formSubmit($event)
+                        !_vm.editMode ? _vm.formSubmit() : _vm.formEditSubmit()
                       }
                     }
                   },
@@ -55782,78 +55830,6 @@ var render = function() {
           ]
         )
       ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "modal fade",
-        attrs: { tabindex: "-1", role: "dialog", id: "edit-type-model" }
-      },
-      [
-        _c(
-          "div",
-          { staticClass: "modal-dialog", attrs: { role: "document" } },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _vm._m(3),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-body" }, [
-                _c(
-                  "form",
-                  {
-                    staticClass: "form",
-                    attrs: { id: "edit-type" },
-                    on: { submit: _vm.formEditSubmit }
-                  },
-                  [
-                    _c("input", {
-                      attrs: { type: "hidden", id: "_token" },
-                      domProps: { value: _vm.csrf }
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group row" }, [
-                      _c("div", { staticClass: "col-md-6" }, [
-                        _c("label", { attrs: { for: "room_type" } }, [
-                          _vm._v("Room Name:")
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form.room_type,
-                              expression: "form.room_type"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: { type: "text", name: "room_type" },
-                          domProps: { value: _vm.form.room_type },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.form,
-                                "room_type",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _vm._m(4)
-                  ]
-                )
-              ])
-            ])
-          ]
-        )
-      ]
     )
   ])
 }
@@ -55876,64 +55852,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c("h4", { staticClass: "modal-title" }, [_vm._v("Add room type")]),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-default",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("Close")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-        [_vm._v("Submit")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c("h4", { staticClass: "modal-title" }, [_vm._v("Edit Room type")]),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      )
-    ])
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
   },
   function() {
     var _vm = this
@@ -56224,7 +56154,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.get('api/prices/').then(function (_ref) {
                 var data = _ref.data;
-                return _this.prices = data;
+                return _this.prices = data.data;
             });
         },
         fetchHotels: function fetchHotels() {
@@ -56232,7 +56162,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.get('api/hotels/').then(function (_ref2) {
                 var data = _ref2.data;
-                return _this2.hotels = data;
+                return _this2.hotels = data.data;
             });
         },
         fetchRoomTypes: function fetchRoomTypes() {
@@ -56240,7 +56170,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.get('api/types/').then(function (_ref3) {
                 var data = _ref3.data;
-                return _this3.types = data;
+                return _this3.types = data.data;
             });
         },
         fetchSeasons: function fetchSeasons() {
@@ -56248,7 +56178,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.get('api/seasons/').then(function (_ref4) {
                 var data = _ref4.data;
-                return _this4.seasons = data;
+                return _this4.seasons = data.data;
             });
         },
         initCreate: function initCreate() {

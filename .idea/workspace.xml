@@ -4,10 +4,13 @@
     <list default="true" id="a9facf75-3b70-4da5-833d-d7ea9a4d0dfb" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/../kcb/2jiajiri/wp-content/themes/kcb_bankika/increment.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RoomsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RoomsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Prices.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Prices.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Prices.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Prices.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/assets/js/components/Hotels.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/js/components/Hotels.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/js/components/Prices.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/js/components/Prices.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/js/components/Rooms.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/js/components/Rooms.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/assets/js/components/Roomtypes.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/js/components/Roomtypes.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kcb/2jiajiri/javaScripts/komu.js" beforeDir="false" afterPath="$PROJECT_DIR$/../kcb/2jiajiri/javaScripts/komu.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kcb/2jiajiri/template-get-ready-landing.php.BAK" beforeDir="false" />
@@ -2798,19 +2801,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/package.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="339">
-              <caret line="31" selection-start-line="31" selection-end-line="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/assets/js/components/Rooms.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1462">
-              <caret line="162" column="72" selection-start-line="162" selection-start-column="72" selection-end-line="162" selection-end-column="72" />
+            <state relative-caret-position="140">
+              <caret line="194" column="48" selection-start-line="194" selection-start-column="48" selection-end-line="194" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -2818,42 +2812,80 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/assets/js/components/Prices.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="206" column="30" selection-start-line="206" selection-start-column="30" selection-end-line="206" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Resources/Hotel.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-283" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/assets/js/components/Bookings.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="124" column="60" selection-start-line="124" selection-start-column="20" selection-end-line="124" selection-end-column="60" />
+            <state relative-caret-position="463">
+              <caret line="215" column="64" selection-start-line="215" selection-start-column="64" selection-end-line="215" selection-end-column="64" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/assets/js/components/Roomtypes.vue">
+        <entry file="file://$PROJECT_DIR$/app/Http/Resources/Prices.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="171" column="16" selection-start-line="171" selection-start-column="16" selection-end-line="171" selection-end-column="16" />
+            <state relative-caret-position="374">
+              <caret line="22" column="83" selection-start-line="22" selection-start-column="83" selection-end-line="22" selection-end-column="83" />
+              <folding>
+                <element signature="e#38#63#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/api.php">
+        <entry file="file://$PROJECT_DIR$/app/Observers/UserObserver.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-323">
-              <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
+            <state relative-caret-position="323">
+              <caret line="19" column="14" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PricesController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="21" column="37" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+              <folding>
+                <element signature="e#39#61#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Models/RoomTypes.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+              <folding>
+                <element signature="e#30#69#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Models/Prices.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="5" lean-forward="true" selection-start-column="5" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Models/Rooms.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/assets/js/components/Roomtypes.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="145" column="51" selection-start-line="140" selection-start-column="20" selection-end-line="145" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -2861,26 +2893,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RoomsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="35" column="27" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/assets/js/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="70" selection-start-line="70" selection-end-line="70" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/assets/js/components/Hotels.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
-              <caret line="110" column="82" selection-start-line="110" selection-start-column="32" selection-end-line="110" selection-end-column="82" />
+            <state relative-caret-position="612">
+              <caret line="53" column="59" selection-start-line="53" selection-start-column="54" selection-end-line="53" selection-end-column="59" />
             </state>
           </provider>
         </entry>
@@ -2953,12 +2967,10 @@
         <option value="$PROJECT_DIR$/database/migrations/2019_06_26_163831_create_room_prices_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_06_26_170504_create_bookings_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_06_26_172611_add_hotel_id_column.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/RoomsController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/SeasonsController.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_06_26_174058_add_season_id_column.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_06_26_174137_create_seasons_table.php" />
         <option value="$PROJECT_DIR$/app/Models/Seasons.php" />
-        <option value="$PROJECT_DIR$/app/Models/RoomTypes.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_06_27_043640_create_api_tokem_column.php" />
         <option value="$PROJECT_DIR$/database/factories/UserFactory.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" />
@@ -2979,16 +2991,18 @@
         <option value="$USER_HOME$/AppData/Local/Temp/fz3temp-3/agents.php" />
         <option value="$USER_HOME$/AppData/Local/Temp/fz3temp-3/.htaccess 3" />
         <option value="$USER_HOME$/AppData/Local/Temp/fz3temp-3/configuration.php" />
-        <option value="$PROJECT_DIR$/app/Models/Prices.php" />
-        <option value="$PROJECT_DIR$/app/Http/Resources/Prices.php" />
         <option value="$PROJECT_DIR$/app/Models/Rooms.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/PricesController.php" />
         <option value="$PROJECT_DIR$/resources/assets/js/components/Bookings.vue" />
-        <option value="$PROJECT_DIR$/resources/assets/js/components/Prices.vue" />
-        <option value="$PROJECT_DIR$/resources/assets/js/components/Rooms.vue" />
         <option value="$PROJECT_DIR$/resources/assets/js/app.js" />
         <option value="$PROJECT_DIR$/resources/assets/js/components/Hotels.vue" />
         <option value="$PROJECT_DIR$/resources/assets/js/components/Roomtypes.vue" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/RoomsController.php" />
+        <option value="$PROJECT_DIR$/resources/assets/js/components/Rooms.vue" />
+        <option value="$PROJECT_DIR$/resources/assets/js/components/Prices.vue" />
+        <option value="$PROJECT_DIR$/app/Models/RoomTypes.php" />
+        <option value="$PROJECT_DIR$/app/Models/Prices.php" />
+        <option value="$PROJECT_DIR$/app/Http/Resources/Prices.php" />
       </list>
     </option>
   </component>
@@ -3133,6 +3147,18 @@
             <path>
               <item name="hotel" type="b2602c69:ProjectViewProjectNode" />
               <item name="hotel" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Observers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hotel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hotel" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Providers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hotel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hotel" type="462c0819:PsiDirectoryNode" />
               <item name="database" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -3242,13 +3268,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="165669000" />
+    <option name="totallyTimeSpent" value="175836000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19865772" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19865772" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -3263,7 +3289,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.284041" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.284041" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -3307,11 +3333,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/VerificationController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-252" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-218" />
@@ -3328,13 +3349,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="24" column="64" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Observers/UserObserver.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="14" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -3545,55 +3559,10 @@
     <entry file="file://$PROJECT_DIR$/resources/views/types.blade.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Resources/Prices.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="25" column="37" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Prices.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PricesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="20" column="43" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
-          <folding>
-            <element signature="e#39#61#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Rooms.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/master.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1032">
           <caret line="217" selection-start-line="217" selection-end-line="217" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RoomsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="35" column="27" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/js/components/Prices.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="206" column="30" selection-start-line="206" selection-start-column="30" selection-end-line="206" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -3611,23 +3580,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-323">
-          <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Resources/Hotel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-283" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/js/components/Rooms.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1462">
-          <caret line="162" column="72" selection-start-line="162" selection-start-column="72" selection-end-line="162" selection-end-column="72" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/js/app.js">
@@ -3639,15 +3594,94 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/js/components/Hotels.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="110" column="82" selection-start-line="110" selection-start-column="32" selection-end-line="110" selection-end-column="82" />
+        <state relative-caret-position="1709">
+          <caret line="169" column="65" selection-start-line="169" selection-start-column="65" selection-end-line="169" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/js/components/Rooms.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="194" column="48" selection-start-line="194" selection-start-column="48" selection-end-line="194" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/js/components/Prices.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="463">
+          <caret line="215" column="64" selection-start-line="215" selection-start-column="64" selection-end-line="215" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RoomsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="53" column="59" selection-start-line="53" selection-start-column="54" selection-end-line="53" selection-end-column="59" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/js/components/Roomtypes.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="171" column="16" selection-start-line="171" selection-start-column="16" selection-end-line="171" selection-end-column="16" />
+        <state relative-caret-position="170">
+          <caret line="145" column="51" selection-start-line="140" selection-start-column="20" selection-end-line="145" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Observers/UserObserver.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="14" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PricesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="37" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+          <folding>
+            <element signature="e#39#61#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Rooms.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Prices.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="5" lean-forward="true" selection-start-column="5" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/RoomTypes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+          <folding>
+            <element signature="e#30#69#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Resources/Prices.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="83" selection-start-line="22" selection-start-column="83" selection-end-line="22" selection-end-column="83" />
+          <folding>
+            <element signature="e#38#63#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

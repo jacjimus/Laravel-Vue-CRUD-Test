@@ -11,7 +11,8 @@ class Prices extends Model
     /*
      * room type relations
      */
-    public function room_type(){
+    public function roomtype()
+    {
         return $this->belongsTo('App\Models\RoomTypes');
     }
 /*

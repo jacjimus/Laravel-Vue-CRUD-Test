@@ -8,14 +8,14 @@
             </div>
         </div>
 
-        <div class="card card-body mb-2" v-for="(room, index) in rooms" v-bind:key="room.id">
+        <div class="card card-body mb-2" v-for="room in rooms" v-bind:key="room.id">
             <div class="row">
                 <div class="col-md-10"><h3>{{room.room_name}}</h3>  </div>
                 <div class="pull-right col-md-2">
                     <a class="dropdown-item text-primary" href="#"
-                       @click="initUpdate(index)">Edit room</a> <br />
+                       @click="initUpdate(room)">Edit room</a> <br />
                     <a class="dropdown-item text-danger" href="#"
-                       @click="roomDelete(room)">Delete room</a>
+                       @click="roomDelete(room.id)">Delete room</a>
 
 
                 </div>
@@ -39,18 +39,19 @@
         </div>
 
         <!-- Create Modal Form -->
-        <div class="modal fade" tabindex="-1" role="dialog" id="create-room-model">
+        <div class="modal fade" tabindex="-1" role="dialog" id="room-modal">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Add Hotel room</h4>
+                        <h4 v-show="!editMode" class="modal-title">Add Hotel room</h4>
+                        <h4 v-show="editMode" class="modal-title">Edit Hotel room</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
 
                     </div>
                     <div class="modal-body">
 
 
-                        <form class="form" id="create-room" @submit.prevent="formSubmit" @keydown="form.onKeydown($event)" enctype="multipart/form-data">
+                        <form class="form" id="form-room" @submit.prevent="!editMode ? formSubmit() : formEditSubmit()" @keydown="form.onKeydown($event)" >
                             <input type="hidden" id="_token" :value="csrf">
                             <div class="form-group row">
                                 <div class="col-md-6">
@@ -116,10 +117,12 @@
         data(){
             return {
                 form : new Form({
+                    id: '',
                     room_name: '',
                     hotel_id: '',
                     room_type_id: '',
                     room_capacity_id: '',
+                    image: '',
                 }),
                 rooms: [],
                 hotels: [],
@@ -129,7 +132,7 @@
                 update_room : {},
                 room_id : '',
                 image : '',
-                edit : false,
+                editMode : false,
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
             }
         },
@@ -138,11 +141,9 @@
             this.fetchRooms();
             this.fetchRoomTypes();
             this.fetchRoomcapacity();
+            Fire.$on('NeedRefresh' , ()=>{this.fetchRooms()});
         },
-        mounted() {
-            console.log('Component mounted')
-            this.fetchRooms();
-        },
+
         methods: {
             fetchHotels(){
                axios.get('api/hotels/')
@@ -165,64 +166,59 @@
             },
             initCreate()
             {
+                this.editMode = false;
                 this.form.reset();
-                this.form.errors.clear();
-                $('#create-form').trigger('reset');
-                $("#create-room-model").modal("show");
+                $("#room-modal").modal("show");
 
 
             },
-            initUpdate(index)
+            initUpdate(room)
             {
-                this.errors = [];
-                this.edit = true;
-                $("#edit-room-model").modal("show");
-                this.room = this.rooms[index];
+                 this.editMode = true;
+                $("#room-modal").modal("show");
+                this.form.fill(room);
 
 
             },
             onImageChange(e){
-                console.log(e.target.files[0]);
                 this.image = e.target.files[0];
             },
-            formSubmit(e)
+            formSubmit()
             {
-                e.preventDefault();
-               /*
-               *Converting form to accept files
-                */
+
                 const config = {
                     headers: { 'content-type': 'multipart/form-data' }
                 }
 
 
-                let form  = document.getElementById('create-room');
-                var mydata = new FormData(form);
+                let myform  = document.getElementById('form-room');
+                var mydata = new FormData(myform);
 
                 mydata.append('room_image' , this.image);
 
                 this.form.post('api/rooms/save', mydata, config)
                     .then(response => {
 
-                        $("#create-room-model").modal("hide");
+                        Fire.$emit("NeedRefresh");
+                        toast.fire({
+                            type: 'success',
+                            title: 'Room created!'
+                        })
+                        $("#room-modal").modal("hide");
+
 
                     })
 
             },
-            formEditSubmit(e)
+            formEditSubmit()
             {
-                e.preventDefault();
 
-
-                /*
-                *Converting form to accept files
-                 */
                 const config = {
                     headers: { 'content-type': 'multipart/form-data' }
                 }
 
 
-                let myform  = document.getElementById('edit-room');
+                let myform  = document.getElementById('form-room');
                 var mydata = new FormData(myform);
 
                 // var form_data = $('form#create-room').serializeArray();
@@ -230,52 +226,51 @@
 
 
                  mydata.append('room_image' , this.image);
-                 mydata.append('id' , this.room.id);
+                 mydata.append('id' , this.form.id);
                 /*
                 (Update) to the PUT route of the Laravel API
                  */
 
-                axios.put('api/rooms/edit', mydata, config)
+                this.form.put('api/rooms/edit', mydata, config)
                     .then(response => {
-
-                        $("#edit-room-model").modal("hide");
+                        Fire.$emit("NeedRefresh");
+                        toast.fire({
+                            type: 'success',
+                            title: 'Record updated!'
+                        })
+                        $("#room-modal").modal("hide");
 
                     })
                     .catch(error => {
-                        this.errors = [];
-                        // validation for room name
-                        if (error.response.data.errors.room_name) {
-                            this.errors.push(error.response.data.errors.room_name[0]);
-                        }
-                        // validation for hotel id
-                        if (error.response.data.errors.hotel_id) {
-                            this.errors.push(error.response.data.errors.hotel_id[0]);
-                        }
-                        // validation for room_type id
-                        if (error.response.data.errors.room_type_id) {
-                            this.errors.push(error.response.data.errors.room_type_id[0]);
-                        }
-                        // validation for room_capacity id
-                        if (error.response.data.errors.room_capacity_id) {
-                            this.errors.push(error.response.data.errors.room_capacity_id[0]);
-                        }
+
 
                     });
             },
-            roomDelete(index){
-                if(confirm("Do you want to remove this room? ")){
+            roomDelete(id) {
+                swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.value) {
+                        this.form.delete('api/rooms/del/' + id).then(() => {
 
-                    axios.delete('api/rooms/del/'+ index.id)
-                        .then(response => {
-
-
-                        })
-                        .catch(error => {
-
+                            Fire.$emit('NeedRefresh');
+                            toast.fire({
+                                    type: 'success',
+                                    title: 'Room deleted successfully'
+                                }
+                            )
 
                         });
-                }
+                    }
 
+
+                })
             }
         }
 

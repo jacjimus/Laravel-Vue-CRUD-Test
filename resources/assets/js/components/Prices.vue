@@ -199,21 +199,21 @@
         methods: {
             fetchPrices(){
                 axios.get('api/prices/')
-                    .then(({data}) => ( this.prices = data) )
+                    .then(({data}) => ( this.prices = data.data) )
 
 
             },
             fetchHotels(){
                 axios.get('api/hotels/')
-                    .then(({data}) => ( this.hotels = data) )
+                    .then(({data}) => ( this.hotels = data.data) )
             },
             fetchRoomTypes(){
                 axios.get('api/types/')
-                    .then(({data}) => ( this.types = data) )
+                    .then(({data}) => ( this.types = data.data) )
             },
             fetchSeasons(){
                 axios.get('api/seasons/')
-                    .then(({data}) => ( this.seasons = data) )
+                    .then(({data}) => ( this.seasons = data.data) )
 
                 },
 
