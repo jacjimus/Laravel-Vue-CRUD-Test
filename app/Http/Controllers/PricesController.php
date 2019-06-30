@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Prices;
+use App\Models\Rooms;
 use App\Http\Resources\Prices as PriceResource;
 use Illuminate\Http\Request;
 

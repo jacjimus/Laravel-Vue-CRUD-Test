@@ -26,4 +26,6 @@ class Prices extends Model
     public function hotel(){
         return $this->belongsTo('App\Models\Hotels');
     }
+
+
 }

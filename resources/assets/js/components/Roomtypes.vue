@@ -149,18 +149,11 @@
                   },
         methods: {
             fetchTypes(){
-                fetch('api/types/')
-                    .then(res => res.json())
-                    .then(res => {
-                        this.types = res.data
-
-
-                    })
+                axios.get('api/types')
+                    .then(({res}) => ( this.types = res))
             },
 
-
-
-            initCreate()
+     initCreate()
             {
                 this.errors = [];
                 this.type = [];

@@ -10,6 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="api_token" content="{{ auth()->user()->api_token }}">
 
     <title>Lara Start | Home</title>
 
@@ -204,7 +205,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 Anything you want
             </div>
             <!-- Default to the left -->
-            <strong>Copyright &copy; 2014-2018 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
+            <strong>Copyright &copy; {{date('Y')}} <a href="#">James</a>.</strong> All rights
             reserved.
         </footer>
     </div>
@@ -214,6 +215,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- jQuery -->
     <script src="/js/app.js"></script>
+
 
 </body>
 

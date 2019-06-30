@@ -49,50 +49,51 @@
                     </div>
                     <div class="modal-body">
 
-                        <div class="alert alert-danger" v-if="errors.length > 0">
-                            <ul>
-                                <li v-for="error in errors">{{ error }}</li>
-                            </ul>
-                        </div>
-                        <form class="form" id="create-room"  @submit="formSubmit" enctype="multipart/form-data">
+
+                        <form class="form" id="create-room" @submit.prevent="formSubmit" @keydown="form.onKeydown($event)" enctype="multipart/form-data">
                             <input type="hidden" id="_token" :value="csrf">
                             <div class="form-group row">
                                 <div class="col-md-6">
                                     <label for="room_name">Room Name:</label>
                                     <input type="text" class="form-control" id="room_name" name="room_name"
-                                           v-model= "room.room_name" />
+                                           v-model= "form.room_name" :class="{ 'is-invalid': form.errors.has('room_name') }" />
+                                    <has-error :form="form" field="room_name"></has-error>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="hotel_id">Hotel:</label>
-                                    <select v-model="room.hotel_id" name="hotel_id" id="hotel_id" class="browser-default custom-select" tabindex="2">
+                                    <select v-model="form.hotel_id" name="hotel_id" id="hotel_id" class="browser-default custom-select" :class="{ 'is-invalid': form.errors.has('hotel_id') }"  tabindex="2">
 
                                         <option v-for="(hotel, index) in hotels" :key="index" :value="hotel.id">{{ hotel.hotel_name }}</option>
 
                                     </select>
+                                    <has-error :form="form" field="hotel_id"></has-error>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <div class="col-md-6">
                                     <label for="room_type_id">Type:</label>
-                                    <select v-model="room.room_type_id" id="room_type_id" name="room_type_id" class="browser-default custom-select" tabindex="2">
+                                    <select v-model="form.room_type_id" id="room_type_id" name="room_type_id" class="browser-default custom-select" :class="{ 'is-invalid': form.errors.has('room_type_id') }" tabindex="2">
 
                                         <option v-for="(type, index) in room_types" :key="index" :value="type.id">{{ type.room_type }}</option>
 
                                     </select>
+                                    <has-error :form="form" field="room_type_id"></has-error>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="room_capacity_id">Capacity:</label>
-                                    <select v-model="room.room_capacity_id" id="room_capacity_id" name="room_capacity_id"  class="browser-default custom-select" tabindex="2">
+                                    <select v-model="form.room_capacity_id" id="room_capacity_id" name="room_capacity_id"  class="browser-default custom-select" :class="{ 'is-invalid': form.errors.has('room_capacity_id') }" tabindex="2">
 
                                         <option v-for="(capacity, index) in room_capacities" :key="index" :value="capacity.id">{{ capacity.room_capacity }}</option>
 
                                     </select>
+                                    <has-error :form="form" field="room_capacity_id"></has-error>
                                 </div>
                                 <div class="col-md-8">
                                     <label for="room_image">Image:</label>
-                                    <input type="file" class="form-control" id="room_image" name="room_image"
+                                    <input type="file" class="form-control" id="room_image" name="room_image" :class="{ 'is-invalid': form.errors.has('room_image') }"
                                            v-on:change="onImageChange">
+                                    <has-error :form="form" field="room_image"></has-error>
                                 </div>
                             </div>
 
@@ -107,94 +108,25 @@
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
 
-        <!-- Edit modal Form starts here -->
-        <div class="modal fade" tabindex="-1" role="dialog" id="edit-room-model">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Edit Hotel room</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
 
-                    </div>
-                    <div class="modal-body">
-
-                        <div class="alert alert-danger" v-if="errors.length > 0">
-                            <ul>
-                                <li v-for="error in errors">{{ error }}</li>
-                            </ul>
-                        </div>
-                        <form class="form" id="edit-room"  @submit="formEditSubmit" enctype="multipart/form-data">
-                            <input type="hidden" id="_token" :value="csrf">
-                            <div class="form-group row">
-                                <div class="col-md-6">
-                                    <label for="room_name">Room Name:</label>
-                                    <input type="text" class="form-control" name="room_name"
-                                           v-model= "room.room_name" />
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="hotel_id">Hotel:</label>
-                                    <select v-model="room.hotel_id" name="hotel_id"  class="browser-default custom-select" tabindex="2">
-
-                                        <option v-for="(hotel, index) in hotels" :key="index" :value="hotel.id">{{ hotel.hotel_name }}</option>
-
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-md-6">
-                                    <label for="room_type_id">Type:</label>
-                                    <select v-model="room.room_type_id" name="room_type_id" class="browser-default custom-select" tabindex="2">
-
-                                        <option v-for="(type, index) in room_types" :key="index" :value="type.id">{{ type.room_type }}</option>
-
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="room_capacity_id">Capacity:</label>
-                                    <select v-model="room.room_capacity_id"  name="room_capacity_id"  class="browser-default custom-select" tabindex="2">
-
-                                        <option v-for="(capacity, index) in room_capacities" :key="index" :value="capacity.id">{{ capacity.room_capacity }}</option>
-
-                                    </select>
-                                </div>
-                                <div class="col-md-8">
-                                    <label for="room_image">Image:</label>
-                                    <input type="file" class="form-control" name="room_image"
-                                           v-on:change="onImageChange">
-                                </div>
-                            </div>
-
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                        </form>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
     </div>
 </template>
 <script>
     export default{
         data(){
             return {
+                form : new Form({
+                    room_name: '',
+                    hotel_id: '',
+                    room_type_id: '',
+                    room_capacity_id: '',
+                }),
                 rooms: [],
                 hotels: [],
                 room_types: [],
                 room_capacities: [],
                 errors: [],
                 update_room : {},
-                room : {
-                    id: '',
-                    room_name: '',
-                    hotel_id: '',
-                    room_type_id: '',
-                    room_capacity_id: '',
-
-                },
                 room_id : '',
                 image : '',
                 edit : false,
@@ -208,48 +140,33 @@
             this.fetchRoomcapacity();
         },
         mounted() {
-            this.this.fetchRooms();
+            console.log('Component mounted')
+            this.fetchRooms();
         },
         methods: {
             fetchHotels(){
-                fetch('api/hotels/')
-                    .then(res => res.json())
-                    .then(res => {
-                        this.hotels = res.data
-
-                        console.log(this.room)
-
-                    })
+               axios.get('api/hotels/')
+                    .then(({data}) =>(this.hotels = data.data ))
             },
             fetchRooms(){
-                fetch('api/rooms/')
-                    .then(res => res.json())
-                    .then(res => {
-                        this.rooms = res.data
+                axios.get('api/rooms/')
+                    .then(({data}) => ( this.rooms = data.data) )
 
-
-                    })
             },
             fetchRoomTypes(){
-                fetch('api/types')
-                    .then(res => res.json())
-                    .then(res => {
-                        this.room_types = res.data
+                axios.get('api/types')
+                    .then(({data}) => ( this.room_types = data.data) )
 
-                    })
-            },
+                   },
             fetchRoomcapacity(){
-                fetch('api/capacity')
-                    .then(res => res.json())
-                    .then(res => {
-                        this.room_capacities = res.data
+                axios.get('api/capacity')
+                    .then(({data}) => ( this.room_capacities = data.data) )
 
-                    })
             },
             initCreate()
             {
-                this.errors = [];
-                this.room = [];
+                this.form.reset();
+                this.form.errors.clear();
                 $('#create-form').trigger('reset');
                 $("#create-room-model").modal("show");
 
@@ -281,37 +198,16 @@
 
                 let form  = document.getElementById('create-room');
                 var mydata = new FormData(form);
-               // var form_data = $('form#create-room').serializeArray();
-                //
-                console.log(mydata);
+
                 mydata.append('room_image' , this.image);
 
-                axios.post('api/rooms/save', mydata, config)
+                this.form.post('api/rooms/save', mydata, config)
                     .then(response => {
 
                         $("#create-room-model").modal("hide");
 
                     })
-                    .catch(error => {
-                        this.errors = [];
-                        // validation for room name
-                        if (error.response.data.errors.room_name) {
-                            this.errors.push(error.response.data.errors.room_name[0]);
-                        }
-                        // validation for hotel id
-                        if (error.response.data.errors.hotel_id) {
-                            this.errors.push(error.response.data.errors.hotel_id[0]);
-                        }
-                        // validation for room_type id
-                        if (error.response.data.errors.room_type_id) {
-                            this.errors.push(error.response.data.errors.room_type_id[0]);
-                        }
-                        // validation for room_capacity id
-                        if (error.response.data.errors.room_capacity_id) {
-                            this.errors.push(error.response.data.errors.room_capacity_id[0]);
-                        }
 
-                    });
             },
             formEditSubmit(e)
             {
@@ -326,8 +222,8 @@
                 }
 
 
-                let form  = document.getElementById('edit-room');
-                var mydata = new FormData(form);
+                let myform  = document.getElementById('edit-room');
+                var mydata = new FormData(myform);
 
                 // var form_data = $('form#create-room').serializeArray();
                 //

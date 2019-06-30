@@ -88,5 +88,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="2jiajiri" />
+    <orderEntry type="module" module-name="kcb-insurance" />
+    <orderEntry type="module" module-name="hf" />
   </component>
 </module>

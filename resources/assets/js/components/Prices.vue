@@ -198,41 +198,24 @@
         },
         methods: {
             fetchPrices(){
-                fetch('api/prices/')
-                    .then(res => res.json())
-                    .then(res => {
-                        this.prices = res.data
+                axios.get('api/prices/')
+                    .then(({data}) => ( this.prices = data) )
 
 
-                    })
             },
             fetchHotels(){
-                fetch('api/hotels/')
-                    .then(res => res.json())
-                    .then(res => {
-                        this.hotels = res.data
-
-
-                    })
+                axios.get('api/hotels/')
+                    .then(({data}) => ( this.hotels = data) )
             },
             fetchRoomTypes(){
-                fetch('api/types/')
-                    .then(res => res.json())
-                    .then(res => {
-                        this.types = res.data
-
-
-                    })
+                axios.get('api/types/')
+                    .then(({data}) => ( this.types = data) )
             },
             fetchSeasons(){
-                fetch('api/seasons/')
-                    .then(res => res.json())
-                    .then(res => {
-                        this.seasons = res.data
+                axios.get('api/seasons/')
+                    .then(({data}) => ( this.seasons = data) )
 
-
-                    })
-            },
+                },
 
 
 

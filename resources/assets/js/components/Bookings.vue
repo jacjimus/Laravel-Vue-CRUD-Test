@@ -121,13 +121,10 @@
         },
         methods: {
             fetchTypes(){
-                fetch('api/types/')
-                    .then(res => res.json())
-                    .then(res => {
-                        this.types = res.data
+                axios.get('api/types/')
+                    .then(({data}) => ( this.types = data) )
 
 
-                    })
             },
 
 
