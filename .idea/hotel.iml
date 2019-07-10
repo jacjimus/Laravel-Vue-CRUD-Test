@@ -89,6 +89,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="2jiajiri" />
     <orderEntry type="module" module-name="kcb-insurance" />
-    <orderEntry type="module" module-name="hf" />
+    <orderEntry type="module" module-name="live" />
   </component>
 </module>

@@ -57015,96 +57015,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -57212,634 +57122,465 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-12" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header" }, [
-            _c("h3", { staticClass: "card-title" }, [_vm._v("Room Bookings")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-tools" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-success",
-                  on: {
-                    click: function($event) {
-                      return _vm.initCreate()
-                    }
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                            Add New\n                            "
-                  ),
-                  _c("i", { staticClass: "fas fa-home fa-fw" })
-                ]
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _vm._m(0)
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "modal fade",
-        attrs: { tabindex: "-1", role: "dialog", id: "create-type-model" }
-      },
-      [
-        _c(
-          "div",
-          { staticClass: "modal-dialog", attrs: { role: "document" } },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _vm._m(1),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-body" }, [
-                _vm.errors.length > 0
-                  ? _c("div", { staticClass: "alert alert-danger" }, [
-                      _c(
-                        "ul",
-                        _vm._l(_vm.errors, function(error) {
-                          return _c("li", [_vm._v(_vm._s(error))])
-                        }),
-                        0
-                      )
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _c(
-                  "form",
-                  {
-                    staticClass: "form",
-                    attrs: { id: "create-type" },
-                    on: { submit: _vm.formSubmit }
-                  },
-                  [
-                    _c("input", {
-                      attrs: { type: "hidden", id: "_token" },
-                      domProps: { value: _vm.csrf }
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group row" }, [
-                      _c("div", { staticClass: "col-md-6" }, [
-                        _c("label", { attrs: { for: "room_type" } }, [
-                          _vm._v("Room Type:")
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.type.room_type,
-                              expression: "type.room_type"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "text",
-                            id: "room_type",
-                            name: "room_type"
-                          },
-                          domProps: { value: _vm.type.room_type },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.type,
-                                "room_type",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _vm._m(2)
-                  ]
-                )
-              ])
-            ])
-          ]
-        )
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "modal fade",
-        attrs: { tabindex: "-1", role: "dialog", id: "edit-type-model" }
-      },
-      [
-        _c(
-          "div",
-          { staticClass: "modal-dialog", attrs: { role: "document" } },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _vm._m(3),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-body" }, [
-                _vm.errors.length > 0
-                  ? _c("div", { staticClass: "alert alert-danger" }, [
-                      _c(
-                        "ul",
-                        _vm._l(_vm.errors, function(error) {
-                          return _c("li", [_vm._v(_vm._s(error))])
-                        }),
-                        0
-                      )
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _c(
-                  "form",
-                  {
-                    staticClass: "form",
-                    attrs: { id: "edit-type" },
-                    on: { submit: _vm.formEditSubmit }
-                  },
-                  [
-                    _c("input", {
-                      attrs: { type: "hidden", id: "_token" },
-                      domProps: { value: _vm.csrf }
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group row" }, [
-                      _c("div", { staticClass: "col-md-6" }, [
-                        _c("label", { attrs: { for: "room_type" } }, [
-                          _vm._v("Room Name:")
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.type.room_type,
-                              expression: "type.room_type"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: { type: "text", name: "room_type" },
-                          domProps: { value: _vm.type.room_type },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.type,
-                                "room_type",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _vm._m(4)
-                  ]
-                )
-              ])
-            ])
-          ]
-        )
-      ]
-    )
-  ])
+  return _vm._m(0)
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-body table-responsive p-0" }, [
-      _c(
-        "div",
-        { staticClass: "fc fc-unthemed fc-ltr", attrs: { id: "calendar" } },
-        [
-          _c("div", { staticClass: "fc-toolbar fc-header-toolbar" }, [
-            _c("div", { staticClass: "fc-left" }, [
-              _c("div", { staticClass: "fc-button-group" }, [
+    return _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row" }, [
+        _c(
+          "div",
+          { staticClass: "fc fc-unthemed fc-ltr", attrs: { id: "calendar" } },
+          [
+            _c("div", { staticClass: "fc-toolbar fc-header-toolbar" }, [
+              _c("div", { staticClass: "fc-left" }, [
+                _c("div", { staticClass: "fc-button-group" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "fc-prev-button fc-button fc-state-default fc-corner-left",
+                      attrs: { type: "button", "aria-label": "prev" }
+                    },
+                    [
+                      _c("span", {
+                        staticClass: "fc-icon fc-icon-left-single-arrow"
+                      })
+                    ]
+                  ),
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "fc-next-button fc-button fc-state-default fc-corner-right",
+                      attrs: { type: "button", "aria-label": "next" }
+                    },
+                    [
+                      _c("span", {
+                        staticClass: "fc-icon fc-icon-right-single-arrow"
+                      })
+                    ]
+                  )
+                ]),
                 _c(
                   "button",
                   {
                     staticClass:
-                      "fc-prev-button fc-button fc-state-default fc-corner-left",
-                    attrs: { type: "button", "aria-label": "prev" }
+                      "fc-today-button fc-button fc-state-default fc-corner-left fc-corner-right fc-state-disabled",
+                    attrs: { type: "button", disabled: "" }
                   },
-                  [
-                    _c("span", {
-                      staticClass: "fc-icon fc-icon-left-single-arrow"
-                    })
-                  ]
-                ),
-                _c(
-                  "button",
-                  {
-                    staticClass:
-                      "fc-next-button fc-button fc-state-default fc-corner-right",
-                    attrs: { type: "button", "aria-label": "next" }
-                  },
-                  [
-                    _c("span", {
-                      staticClass: "fc-icon fc-icon-right-single-arrow"
-                    })
-                  ]
+                  [_vm._v("today")]
                 )
               ]),
+              _c("div", { staticClass: "fc-right" }, [
+                _c("div", { staticClass: "fc-button-group" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "fc-month-button fc-button fc-state-default fc-corner-left fc-state-active",
+                      attrs: { type: "button" }
+                    },
+                    [_vm._v("month")]
+                  ),
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "fc-agendaWeek-button fc-button fc-state-default",
+                      attrs: { type: "button" }
+                    },
+                    [_vm._v("week")]
+                  ),
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "fc-agendaDay-button fc-button fc-state-default fc-corner-right",
+                      attrs: { type: "button" }
+                    },
+                    [_vm._v("day")]
+                  )
+                ])
+              ]),
+              _c("div", { staticClass: "fc-center" }, [
+                _c("h2", [_vm._v("June 2019")])
+              ]),
+              _c("div", { staticClass: "fc-clear" })
+            ]),
+            _c("div", { staticClass: "fc-view-container" }, [
               _c(
-                "button",
-                {
-                  staticClass:
-                    "fc-today-button fc-button fc-state-default fc-corner-left fc-corner-right fc-state-disabled",
-                  attrs: { type: "button", disabled: "" }
-                },
-                [_vm._v("today")]
-              )
-            ]),
-            _c("div", { staticClass: "fc-right" }, [
-              _c("div", { staticClass: "fc-button-group" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass:
-                      "fc-month-button fc-button fc-state-default fc-corner-left fc-state-active",
-                    attrs: { type: "button" }
-                  },
-                  [_vm._v("month")]
-                ),
-                _c(
-                  "button",
-                  {
-                    staticClass:
-                      "fc-agendaWeek-button fc-button fc-state-default",
-                    attrs: { type: "button" }
-                  },
-                  [_vm._v("week")]
-                ),
-                _c(
-                  "button",
-                  {
-                    staticClass:
-                      "fc-agendaDay-button fc-button fc-state-default fc-corner-right",
-                    attrs: { type: "button" }
-                  },
-                  [_vm._v("day")]
-                )
-              ])
-            ]),
-            _c("div", { staticClass: "fc-center" }, [
-              _c("h2", [_vm._v("June 2019")])
-            ]),
-            _c("div", { staticClass: "fc-clear" })
-          ]),
-          _c("div", { staticClass: "fc-view-container" }, [
-            _c("div", { staticClass: "fc-view fc-month-view fc-basic-view" }, [
-              _c("table", {}, [
-                _c("thead", { staticClass: "fc-head" }, [
-                  _c("tr", [
-                    _c(
-                      "td",
-                      { staticClass: "fc-head-container fc-widget-header" },
-                      [
-                        _c("div", { staticClass: "fc-row fc-widget-header" }, [
-                          _c("table", {}, [
-                            _c("thead", [
-                              _c("tr", [
-                                _c(
-                                  "th",
-                                  {
-                                    staticClass:
-                                      "fc-day-header fc-widget-header fc-sun"
-                                  },
-                                  [_c("span", [_vm._v("Sun")])]
-                                ),
-                                _c(
-                                  "th",
-                                  {
-                                    staticClass:
-                                      "fc-day-header fc-widget-header fc-mon"
-                                  },
-                                  [_c("span", [_vm._v("Mon")])]
-                                ),
-                                _c(
-                                  "th",
-                                  {
-                                    staticClass:
-                                      "fc-day-header fc-widget-header fc-tue"
-                                  },
-                                  [_c("span", [_vm._v("Tue")])]
-                                ),
-                                _c(
-                                  "th",
-                                  {
-                                    staticClass:
-                                      "fc-day-header fc-widget-header fc-wed"
-                                  },
-                                  [_c("span", [_vm._v("Wed")])]
-                                ),
-                                _c(
-                                  "th",
-                                  {
-                                    staticClass:
-                                      "fc-day-header fc-widget-header fc-thu"
-                                  },
-                                  [_c("span", [_vm._v("Thu")])]
-                                ),
-                                _c(
-                                  "th",
-                                  {
-                                    staticClass:
-                                      "fc-day-header fc-widget-header fc-fri"
-                                  },
-                                  [_c("span", [_vm._v("Fri")])]
-                                ),
-                                _c(
-                                  "th",
-                                  {
-                                    staticClass:
-                                      "fc-day-header fc-widget-header fc-sat"
-                                  },
-                                  [_c("span", [_vm._v("Sat")])]
-                                )
-                              ])
-                            ])
-                          ])
-                        ])
-                      ]
-                    )
-                  ])
-                ]),
-                _c("tbody", { staticClass: "fc-body" }, [
-                  _c("tr", [
-                    _c("td", { staticClass: "fc-widget-content" }, [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "fc-scroller fc-day-grid-container",
-                          staticStyle: { overflow: "hidden", height: "658.2px" }
-                        },
-                        [
+                "div",
+                { staticClass: "fc-view fc-month-view fc-basic-view" },
+                [
+                  _c("table", {}, [
+                    _c("thead", { staticClass: "fc-head" }, [
+                      _c("tr", [
+                        _c(
+                          "td",
+                          { staticClass: "fc-head-container fc-widget-header" },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "fc-row fc-widget-header" },
+                              [
+                                _c("table", {}, [
+                                  _c("thead", [
+                                    _c("tr", [
+                                      _c(
+                                        "th",
+                                        {
+                                          staticClass:
+                                            "fc-day-header fc-widget-header fc-sun"
+                                        },
+                                        [_c("span", [_vm._v("Sun")])]
+                                      ),
+                                      _c(
+                                        "th",
+                                        {
+                                          staticClass:
+                                            "fc-day-header fc-widget-header fc-mon"
+                                        },
+                                        [_c("span", [_vm._v("Mon")])]
+                                      ),
+                                      _c(
+                                        "th",
+                                        {
+                                          staticClass:
+                                            "fc-day-header fc-widget-header fc-tue"
+                                        },
+                                        [_c("span", [_vm._v("Tue")])]
+                                      ),
+                                      _c(
+                                        "th",
+                                        {
+                                          staticClass:
+                                            "fc-day-header fc-widget-header fc-wed"
+                                        },
+                                        [_c("span", [_vm._v("Wed")])]
+                                      ),
+                                      _c(
+                                        "th",
+                                        {
+                                          staticClass:
+                                            "fc-day-header fc-widget-header fc-thu"
+                                        },
+                                        [_c("span", [_vm._v("Thu")])]
+                                      ),
+                                      _c(
+                                        "th",
+                                        {
+                                          staticClass:
+                                            "fc-day-header fc-widget-header fc-fri"
+                                        },
+                                        [_c("span", [_vm._v("Fri")])]
+                                      ),
+                                      _c(
+                                        "th",
+                                        {
+                                          staticClass:
+                                            "fc-day-header fc-widget-header fc-sat"
+                                        },
+                                        [_c("span", [_vm._v("Sat")])]
+                                      )
+                                    ])
+                                  ])
+                                ])
+                              ]
+                            )
+                          ]
+                        )
+                      ])
+                    ]),
+                    _c("tbody", { staticClass: "fc-body" }, [
+                      _c("tr", [
+                        _c("td", { staticClass: "fc-widget-content" }, [
                           _c(
                             "div",
-                            { staticClass: "fc-day-grid fc-unselectable" },
+                            {
+                              staticClass: "fc-scroller fc-day-grid-container",
+                              staticStyle: {
+                                overflow: "hidden",
+                                height: "671.4px"
+                              }
+                            },
                             [
                               _c(
                                 "div",
-                                {
-                                  staticClass:
-                                    "fc-row fc-week fc-widget-content",
-                                  staticStyle: { height: "109px" }
-                                },
+                                { staticClass: "fc-day-grid fc-unselectable" },
                                 [
-                                  _c("div", { staticClass: "fc-bg" }, [
-                                    _c("table", {}, [
-                                      _c("tbody", [
-                                        _c("tr", [
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-sun fc-other-month fc-past",
-                                            attrs: { "data-date": "2019-05-26" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-mon fc-other-month fc-past",
-                                            attrs: { "data-date": "2019-05-27" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-tue fc-other-month fc-past",
-                                            attrs: { "data-date": "2019-05-28" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-wed fc-other-month fc-past",
-                                            attrs: { "data-date": "2019-05-29" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-thu fc-other-month fc-past",
-                                            attrs: { "data-date": "2019-05-30" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-fri fc-other-month fc-past",
-                                            attrs: { "data-date": "2019-05-31" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-sat fc-past",
-                                            attrs: { "data-date": "2019-06-01" }
-                                          })
-                                        ])
-                                      ])
-                                    ])
-                                  ]),
                                   _c(
                                     "div",
-                                    { staticClass: "fc-content-skeleton" },
+                                    {
+                                      staticClass:
+                                        "fc-row fc-week fc-widget-content",
+                                      staticStyle: { height: "111px" }
+                                    },
                                     [
-                                      _c("table", [
-                                        _c("thead", [
-                                          _c("tr", [
-                                            _c(
-                                              "td",
-                                              {
+                                      _c("div", { staticClass: "fc-bg" }, [
+                                        _c("table", {}, [
+                                          _c("tbody", [
+                                            _c("tr", [
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-sun fc-other-month fc-past",
+                                                  "fc-day fc-widget-content fc-sun fc-other-month fc-past",
                                                 attrs: {
                                                   "data-date": "2019-05-26"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("26")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-mon fc-other-month fc-past",
+                                                  "fc-day fc-widget-content fc-mon fc-other-month fc-past",
                                                 attrs: {
                                                   "data-date": "2019-05-27"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("27")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-tue fc-other-month fc-past",
+                                                  "fc-day fc-widget-content fc-tue fc-other-month fc-past",
                                                 attrs: {
                                                   "data-date": "2019-05-28"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("28")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-wed fc-other-month fc-past",
+                                                  "fc-day fc-widget-content fc-wed fc-other-month fc-past",
                                                 attrs: {
                                                   "data-date": "2019-05-29"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("29")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-thu fc-other-month fc-past",
+                                                  "fc-day fc-widget-content fc-thu fc-other-month fc-past",
                                                 attrs: {
                                                   "data-date": "2019-05-30"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("30")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-fri fc-other-month fc-past",
+                                                  "fc-day fc-widget-content fc-fri fc-other-month fc-past",
                                                 attrs: {
                                                   "data-date": "2019-05-31"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("31")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-sat fc-past",
+                                                  "fc-day fc-widget-content fc-sat fc-past",
                                                 attrs: {
                                                   "data-date": "2019-06-01"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("1")]
-                                                )
-                                              ]
-                                            )
+                                              })
+                                            ])
                                           ])
-                                        ]),
-                                        _c("tbody", [
-                                          _c("tr", [
-                                            _c("td"),
-                                            _c("td"),
-                                            _c("td"),
-                                            _c("td"),
-                                            _c("td"),
-                                            _c("td"),
-                                            _c(
-                                              "td",
-                                              {
-                                                staticClass:
-                                                  "fc-event-container"
-                                              },
-                                              [
+                                        ])
+                                      ]),
+                                      _c(
+                                        "div",
+                                        { staticClass: "fc-content-skeleton" },
+                                        [
+                                          _c("table", [
+                                            _c("thead", [
+                                              _c("tr", [
                                                 _c(
-                                                  "a",
+                                                  "td",
                                                   {
                                                     staticClass:
-                                                      "fc-day-grid-event fc-h-event fc-event fc-start fc-end fc-draggable",
-                                                    staticStyle: {
-                                                      "background-color":
-                                                        "#f56954",
-                                                      "border-color": "#f56954"
+                                                      "fc-day-top fc-sun fc-other-month fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-05-26"
                                                     }
                                                   },
                                                   [
                                                     _c(
-                                                      "div",
+                                                      "span",
                                                       {
                                                         staticClass:
-                                                          "fc-content"
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("26")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-mon fc-other-month fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-05-27"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("27")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-tue fc-other-month fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-05-28"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("28")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-wed fc-other-month fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-05-29"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("29")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-thu fc-other-month fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-05-30"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("30")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-fri fc-other-month fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-05-31"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("31")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-sat fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-06-01"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("1")]
+                                                    )
+                                                  ]
+                                                )
+                                              ])
+                                            ]),
+                                            _c("tbody", [
+                                              _c("tr", [
+                                                _c("td"),
+                                                _c("td"),
+                                                _c("td"),
+                                                _c("td"),
+                                                _c("td"),
+                                                _c("td"),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-event-container"
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "a",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-grid-event fc-h-event fc-event fc-start fc-end fc-draggable",
+                                                        staticStyle: {
+                                                          "background-color":
+                                                            "#f56954",
+                                                          "border-color":
+                                                            "#f56954"
+                                                        }
                                                       },
                                                       [
                                                         _c(
-                                                          "span",
+                                                          "div",
                                                           {
                                                             staticClass:
-                                                              "fc-time"
-                                                          },
-                                                          [_vm._v("12a")]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "span",
-                                                          {
-                                                            staticClass:
-                                                              "fc-title"
+                                                              "fc-content"
                                                           },
                                                           [
-                                                            _vm._v(
-                                                              "All Day Event"
+                                                            _c(
+                                                              "span",
+                                                              {
+                                                                staticClass:
+                                                                  "fc-time"
+                                                              },
+                                                              [_vm._v("12a")]
+                                                            ),
+                                                            _vm._v(" "),
+                                                            _c(
+                                                              "span",
+                                                              {
+                                                                staticClass:
+                                                                  "fc-title"
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  "All Day Event"
+                                                                )
+                                                              ]
                                                             )
                                                           ]
                                                         )
@@ -57847,1458 +57588,1455 @@ var staticRenderFns = [
                                                     )
                                                   ]
                                                 )
-                                              ]
-                                            )
+                                              ])
+                                            ])
                                           ])
-                                        ])
-                                      ])
+                                        ]
+                                      )
                                     ]
-                                  )
-                                ]
-                              ),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "fc-row fc-week fc-widget-content",
-                                  staticStyle: { height: "109px" }
-                                },
-                                [
-                                  _c("div", { staticClass: "fc-bg" }, [
-                                    _c("table", {}, [
-                                      _c("tbody", [
-                                        _c("tr", [
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-sun fc-past",
-                                            attrs: { "data-date": "2019-06-02" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-mon fc-past",
-                                            attrs: { "data-date": "2019-06-03" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-tue fc-past",
-                                            attrs: { "data-date": "2019-06-04" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-wed fc-past",
-                                            attrs: { "data-date": "2019-06-05" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-thu fc-past",
-                                            attrs: { "data-date": "2019-06-06" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-fri fc-past",
-                                            attrs: { "data-date": "2019-06-07" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-sat fc-past",
-                                            attrs: { "data-date": "2019-06-08" }
-                                          })
-                                        ])
-                                      ])
-                                    ])
-                                  ]),
+                                  ),
                                   _c(
                                     "div",
-                                    { staticClass: "fc-content-skeleton" },
+                                    {
+                                      staticClass:
+                                        "fc-row fc-week fc-widget-content",
+                                      staticStyle: { height: "111px" }
+                                    },
                                     [
-                                      _c("table", [
-                                        _c("thead", [
-                                          _c("tr", [
-                                            _c(
-                                              "td",
-                                              {
+                                      _c("div", { staticClass: "fc-bg" }, [
+                                        _c("table", {}, [
+                                          _c("tbody", [
+                                            _c("tr", [
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-sun fc-past",
+                                                  "fc-day fc-widget-content fc-sun fc-past",
                                                 attrs: {
                                                   "data-date": "2019-06-02"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("2")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-mon fc-past",
+                                                  "fc-day fc-widget-content fc-mon fc-past",
                                                 attrs: {
                                                   "data-date": "2019-06-03"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("3")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-tue fc-past",
+                                                  "fc-day fc-widget-content fc-tue fc-past",
                                                 attrs: {
                                                   "data-date": "2019-06-04"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("4")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-wed fc-past",
+                                                  "fc-day fc-widget-content fc-wed fc-past",
                                                 attrs: {
                                                   "data-date": "2019-06-05"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("5")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-thu fc-past",
+                                                  "fc-day fc-widget-content fc-thu fc-past",
                                                 attrs: {
                                                   "data-date": "2019-06-06"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("6")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-fri fc-past",
+                                                  "fc-day fc-widget-content fc-fri fc-past",
                                                 attrs: {
                                                   "data-date": "2019-06-07"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("7")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-sat fc-past",
+                                                  "fc-day fc-widget-content fc-sat fc-past",
                                                 attrs: {
                                                   "data-date": "2019-06-08"
                                                 }
-                                              },
-                                              [
+                                              })
+                                            ])
+                                          ])
+                                        ])
+                                      ]),
+                                      _c(
+                                        "div",
+                                        { staticClass: "fc-content-skeleton" },
+                                        [
+                                          _c("table", [
+                                            _c("thead", [
+                                              _c("tr", [
                                                 _c(
-                                                  "span",
+                                                  "td",
                                                   {
-                                                    staticClass: "fc-day-number"
+                                                    staticClass:
+                                                      "fc-day-top fc-sun fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-06-02"
+                                                    }
                                                   },
-                                                  [_vm._v("8")]
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("2")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-mon fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-06-03"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("3")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-tue fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-06-04"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("4")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-wed fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-06-05"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("5")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-thu fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-06-06"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("6")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-fri fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-06-07"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("7")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-sat fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-06-08"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("8")]
+                                                    )
+                                                  ]
                                                 )
-                                              ]
-                                            )
+                                              ])
+                                            ]),
+                                            _c("tbody", [
+                                              _c("tr", [
+                                                _c("td"),
+                                                _c("td"),
+                                                _c("td"),
+                                                _c("td"),
+                                                _c("td"),
+                                                _c("td"),
+                                                _c("td")
+                                              ])
+                                            ])
                                           ])
-                                        ]),
-                                        _c("tbody", [
-                                          _c("tr", [
-                                            _c("td"),
-                                            _c("td"),
-                                            _c("td"),
-                                            _c("td"),
-                                            _c("td"),
-                                            _c("td"),
-                                            _c("td")
-                                          ])
-                                        ])
-                                      ])
+                                        ]
+                                      )
                                     ]
-                                  )
-                                ]
-                              ),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "fc-row fc-week fc-widget-content",
-                                  staticStyle: { height: "109px" }
-                                },
-                                [
-                                  _c("div", { staticClass: "fc-bg" }, [
-                                    _c("table", {}, [
-                                      _c("tbody", [
-                                        _c("tr", [
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-sun fc-past",
-                                            attrs: { "data-date": "2019-06-09" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-mon fc-past",
-                                            attrs: { "data-date": "2019-06-10" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-tue fc-past",
-                                            attrs: { "data-date": "2019-06-11" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-wed fc-past",
-                                            attrs: { "data-date": "2019-06-12" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-thu fc-past",
-                                            attrs: { "data-date": "2019-06-13" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-fri fc-past",
-                                            attrs: { "data-date": "2019-06-14" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-sat fc-past",
-                                            attrs: { "data-date": "2019-06-15" }
-                                          })
-                                        ])
-                                      ])
-                                    ])
-                                  ]),
+                                  ),
                                   _c(
                                     "div",
-                                    { staticClass: "fc-content-skeleton" },
+                                    {
+                                      staticClass:
+                                        "fc-row fc-week fc-widget-content",
+                                      staticStyle: { height: "111px" }
+                                    },
                                     [
-                                      _c("table", [
-                                        _c("thead", [
-                                          _c("tr", [
-                                            _c(
-                                              "td",
-                                              {
+                                      _c("div", { staticClass: "fc-bg" }, [
+                                        _c("table", {}, [
+                                          _c("tbody", [
+                                            _c("tr", [
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-sun fc-past",
+                                                  "fc-day fc-widget-content fc-sun fc-past",
                                                 attrs: {
                                                   "data-date": "2019-06-09"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("9")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-mon fc-past",
+                                                  "fc-day fc-widget-content fc-mon fc-past",
                                                 attrs: {
                                                   "data-date": "2019-06-10"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("10")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-tue fc-past",
+                                                  "fc-day fc-widget-content fc-tue fc-past",
                                                 attrs: {
                                                   "data-date": "2019-06-11"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("11")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-wed fc-past",
+                                                  "fc-day fc-widget-content fc-wed fc-past",
                                                 attrs: {
                                                   "data-date": "2019-06-12"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("12")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-thu fc-past",
+                                                  "fc-day fc-widget-content fc-thu fc-past",
                                                 attrs: {
                                                   "data-date": "2019-06-13"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("13")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-fri fc-past",
+                                                  "fc-day fc-widget-content fc-fri fc-past",
                                                 attrs: {
                                                   "data-date": "2019-06-14"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("14")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-sat fc-past",
+                                                  "fc-day fc-widget-content fc-sat fc-past",
                                                 attrs: {
                                                   "data-date": "2019-06-15"
                                                 }
-                                              },
-                                              [
+                                              })
+                                            ])
+                                          ])
+                                        ])
+                                      ]),
+                                      _c(
+                                        "div",
+                                        { staticClass: "fc-content-skeleton" },
+                                        [
+                                          _c("table", [
+                                            _c("thead", [
+                                              _c("tr", [
                                                 _c(
-                                                  "span",
+                                                  "td",
                                                   {
-                                                    staticClass: "fc-day-number"
+                                                    staticClass:
+                                                      "fc-day-top fc-sun fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-06-09"
+                                                    }
                                                   },
-                                                  [_vm._v("15")]
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("9")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-mon fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-06-10"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("10")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-tue fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-06-11"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("11")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-wed fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-06-12"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("12")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-thu fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-06-13"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("13")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-fri fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-06-14"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("14")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-sat fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-06-15"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("15")]
+                                                    )
+                                                  ]
                                                 )
-                                              ]
-                                            )
+                                              ])
+                                            ]),
+                                            _c("tbody", [
+                                              _c("tr", [
+                                                _c("td"),
+                                                _c("td"),
+                                                _c("td"),
+                                                _c("td"),
+                                                _c("td"),
+                                                _c("td"),
+                                                _c("td")
+                                              ])
+                                            ])
                                           ])
-                                        ]),
-                                        _c("tbody", [
-                                          _c("tr", [
-                                            _c("td"),
-                                            _c("td"),
-                                            _c("td"),
-                                            _c("td"),
-                                            _c("td"),
-                                            _c("td"),
-                                            _c("td")
-                                          ])
-                                        ])
-                                      ])
+                                        ]
+                                      )
                                     ]
-                                  )
-                                ]
-                              ),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "fc-row fc-week fc-widget-content",
-                                  staticStyle: { height: "109px" }
-                                },
-                                [
-                                  _c("div", { staticClass: "fc-bg" }, [
-                                    _c("table", {}, [
-                                      _c("tbody", [
-                                        _c("tr", [
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-sun fc-past",
-                                            attrs: { "data-date": "2019-06-16" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-mon fc-past",
-                                            attrs: { "data-date": "2019-06-17" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-tue fc-past",
-                                            attrs: { "data-date": "2019-06-18" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-wed fc-past",
-                                            attrs: { "data-date": "2019-06-19" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-thu fc-past",
-                                            attrs: { "data-date": "2019-06-20" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-fri fc-past",
-                                            attrs: { "data-date": "2019-06-21" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-sat fc-past",
-                                            attrs: { "data-date": "2019-06-22" }
-                                          })
-                                        ])
-                                      ])
-                                    ])
-                                  ]),
+                                  ),
                                   _c(
                                     "div",
-                                    { staticClass: "fc-content-skeleton" },
+                                    {
+                                      staticClass:
+                                        "fc-row fc-week fc-widget-content",
+                                      staticStyle: { height: "111px" }
+                                    },
                                     [
-                                      _c("table", [
-                                        _c("thead", [
-                                          _c("tr", [
-                                            _c(
-                                              "td",
-                                              {
+                                      _c("div", { staticClass: "fc-bg" }, [
+                                        _c("table", {}, [
+                                          _c("tbody", [
+                                            _c("tr", [
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-sun fc-past",
+                                                  "fc-day fc-widget-content fc-sun fc-past",
                                                 attrs: {
                                                   "data-date": "2019-06-16"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("16")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-mon fc-past",
+                                                  "fc-day fc-widget-content fc-mon fc-past",
                                                 attrs: {
                                                   "data-date": "2019-06-17"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("17")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-tue fc-past",
+                                                  "fc-day fc-widget-content fc-tue fc-past",
                                                 attrs: {
                                                   "data-date": "2019-06-18"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("18")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-wed fc-past",
+                                                  "fc-day fc-widget-content fc-wed fc-past",
                                                 attrs: {
                                                   "data-date": "2019-06-19"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("19")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-thu fc-past",
+                                                  "fc-day fc-widget-content fc-thu fc-past",
                                                 attrs: {
                                                   "data-date": "2019-06-20"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("20")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-fri fc-past",
+                                                  "fc-day fc-widget-content fc-fri fc-past",
                                                 attrs: {
                                                   "data-date": "2019-06-21"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("21")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-sat fc-past",
+                                                  "fc-day fc-widget-content fc-sat fc-past",
                                                 attrs: {
                                                   "data-date": "2019-06-22"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("22")]
-                                                )
-                                              ]
-                                            )
+                                              })
+                                            ])
                                           ])
-                                        ]),
-                                        _c("tbody", [
-                                          _c("tr", [
-                                            _c("td"),
-                                            _c("td"),
-                                            _c("td"),
-                                            _c("td"),
-                                            _c("td"),
-                                            _c(
-                                              "td",
-                                              {
-                                                staticClass:
-                                                  "fc-event-container",
-                                                attrs: { colspan: "2" }
-                                              },
-                                              [
+                                        ])
+                                      ]),
+                                      _c(
+                                        "div",
+                                        { staticClass: "fc-content-skeleton" },
+                                        [
+                                          _c("table", [
+                                            _c("thead", [
+                                              _c("tr", [
                                                 _c(
-                                                  "a",
+                                                  "td",
                                                   {
                                                     staticClass:
-                                                      "fc-day-grid-event fc-h-event fc-event fc-start fc-not-end fc-draggable",
-                                                    staticStyle: {
-                                                      "background-color":
-                                                        "#f39c12",
-                                                      "border-color": "#f39c12"
+                                                      "fc-day-top fc-sun fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-06-16"
                                                     }
                                                   },
                                                   [
                                                     _c(
-                                                      "div",
+                                                      "span",
                                                       {
                                                         staticClass:
-                                                          "fc-content"
+                                                          "fc-day-number"
                                                       },
-                                                      [
-                                                        _c(
-                                                          "span",
-                                                          {
-                                                            staticClass:
-                                                              "fc-time"
-                                                          },
-                                                          [_vm._v("12a")]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "span",
-                                                          {
-                                                            staticClass:
-                                                              "fc-title"
-                                                          },
-                                                          [_vm._v("Long Event")]
-                                                        )
-                                                      ]
+                                                      [_vm._v("16")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-mon fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-06-17"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("17")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-tue fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-06-18"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("18")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-wed fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-06-19"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("19")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-thu fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-06-20"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("20")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-fri fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-06-21"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("21")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-sat fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-06-22"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("22")]
                                                     )
                                                   ]
                                                 )
-                                              ]
-                                            )
+                                              ])
+                                            ]),
+                                            _c("tbody", [
+                                              _c("tr", [
+                                                _c("td"),
+                                                _c("td"),
+                                                _c("td"),
+                                                _c("td"),
+                                                _c("td"),
+                                                _c("td"),
+                                                _c("td")
+                                              ])
+                                            ])
                                           ])
-                                        ])
-                                      ])
+                                        ]
+                                      )
                                     ]
-                                  )
-                                ]
-                              ),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "fc-row fc-week fc-widget-content",
-                                  staticStyle: { height: "108px" }
-                                },
-                                [
-                                  _c("div", { staticClass: "fc-bg" }, [
-                                    _c("table", {}, [
-                                      _c("tbody", [
-                                        _c("tr", [
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-sun fc-past",
-                                            attrs: { "data-date": "2019-06-23" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-mon fc-past",
-                                            attrs: { "data-date": "2019-06-24" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-tue fc-past",
-                                            attrs: { "data-date": "2019-06-25" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-wed fc-today ",
-                                            attrs: { "data-date": "2019-06-26" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-thu fc-future",
-                                            attrs: { "data-date": "2019-06-27" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-fri fc-future",
-                                            attrs: { "data-date": "2019-06-28" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-sat fc-future",
-                                            attrs: { "data-date": "2019-06-29" }
-                                          })
-                                        ])
-                                      ])
-                                    ])
-                                  ]),
+                                  ),
                                   _c(
                                     "div",
-                                    { staticClass: "fc-content-skeleton" },
+                                    {
+                                      staticClass:
+                                        "fc-row fc-week fc-widget-content",
+                                      staticStyle: { height: "111px" }
+                                    },
                                     [
-                                      _c("table", [
-                                        _c("thead", [
-                                          _c("tr", [
-                                            _c(
-                                              "td",
-                                              {
+                                      _c("div", { staticClass: "fc-bg" }, [
+                                        _c("table", {}, [
+                                          _c("tbody", [
+                                            _c("tr", [
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-sun fc-past",
+                                                  "fc-day fc-widget-content fc-sun fc-past",
                                                 attrs: {
                                                   "data-date": "2019-06-23"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("23")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-mon fc-past",
+                                                  "fc-day fc-widget-content fc-mon fc-past",
                                                 attrs: {
                                                   "data-date": "2019-06-24"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("24")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-tue fc-past",
+                                                  "fc-day fc-widget-content fc-tue fc-past",
                                                 attrs: {
                                                   "data-date": "2019-06-25"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("25")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-wed fc-today ",
+                                                  "fc-day fc-widget-content fc-wed fc-past",
                                                 attrs: {
                                                   "data-date": "2019-06-26"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("26")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-thu fc-future",
+                                                  "fc-day fc-widget-content fc-thu fc-past",
                                                 attrs: {
                                                   "data-date": "2019-06-27"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("27")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-fri fc-future",
+                                                  "fc-day fc-widget-content fc-fri fc-past",
                                                 attrs: {
                                                   "data-date": "2019-06-28"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("28")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-sat fc-future",
+                                                  "fc-day fc-widget-content fc-sat fc-past",
                                                 attrs: {
                                                   "data-date": "2019-06-29"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("29")]
-                                                )
-                                              ]
-                                            )
+                                              })
+                                            ])
                                           ])
-                                        ]),
-                                        _c("tbody", [
-                                          _c("tr", [
-                                            _c(
-                                              "td",
-                                              {
-                                                staticClass:
-                                                  "fc-event-container",
-                                                attrs: { rowspan: "2" }
-                                              },
-                                              [
+                                        ])
+                                      ]),
+                                      _c(
+                                        "div",
+                                        { staticClass: "fc-content-skeleton" },
+                                        [
+                                          _c("table", [
+                                            _c("thead", [
+                                              _c("tr", [
                                                 _c(
-                                                  "a",
+                                                  "td",
                                                   {
                                                     staticClass:
-                                                      "fc-day-grid-event fc-h-event fc-event fc-not-start fc-end fc-draggable",
-                                                    staticStyle: {
-                                                      "background-color":
-                                                        "#f39c12",
-                                                      "border-color": "#f39c12"
-                                                    }
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "fc-content"
-                                                      },
-                                                      [
-                                                        _c(
-                                                          "span",
-                                                          {
-                                                            staticClass:
-                                                              "fc-title"
-                                                          },
-                                                          [_vm._v("Long Event")]
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]
-                                                )
-                                              ]
-                                            ),
-                                            _c("td", {
-                                              attrs: { rowspan: "2" }
-                                            }),
-                                            _c("td", {
-                                              attrs: { rowspan: "2" }
-                                            }),
-                                            _c(
-                                              "td",
-                                              {
-                                                staticClass:
-                                                  "fc-event-container"
-                                              },
-                                              [
-                                                _c(
-                                                  "a",
-                                                  {
-                                                    staticClass:
-                                                      "fc-day-grid-event fc-h-event fc-event fc-start fc-end fc-draggable",
-                                                    staticStyle: {
-                                                      "background-color":
-                                                        "#0073b7",
-                                                      "border-color": "#0073b7"
-                                                    }
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "fc-content"
-                                                      },
-                                                      [
-                                                        _c(
-                                                          "span",
-                                                          {
-                                                            staticClass:
-                                                              "fc-time"
-                                                          },
-                                                          [_vm._v("10:30a")]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "span",
-                                                          {
-                                                            staticClass:
-                                                              "fc-title"
-                                                          },
-                                                          [_vm._v("Meeting")]
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
-                                                staticClass:
-                                                  "fc-event-container",
-                                                attrs: { rowspan: "2" }
-                                              },
-                                              [
-                                                _c(
-                                                  "a",
-                                                  {
-                                                    staticClass:
-                                                      "fc-day-grid-event fc-h-event fc-event fc-start fc-end fc-draggable",
-                                                    staticStyle: {
-                                                      "background-color":
-                                                        "#00a65a",
-                                                      "border-color": "#00a65a"
-                                                    }
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "fc-content"
-                                                      },
-                                                      [
-                                                        _c(
-                                                          "span",
-                                                          {
-                                                            staticClass:
-                                                              "fc-time"
-                                                          },
-                                                          [_vm._v("7p")]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "span",
-                                                          {
-                                                            staticClass:
-                                                              "fc-title"
-                                                          },
-                                                          [
-                                                            _vm._v(
-                                                              "Birthday Party"
-                                                            )
-                                                          ]
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
-                                                staticClass:
-                                                  "fc-event-container",
-                                                attrs: { rowspan: "2" }
-                                              },
-                                              [
-                                                _c(
-                                                  "a",
-                                                  {
-                                                    staticClass:
-                                                      "fc-day-grid-event fc-h-event fc-event fc-start fc-end fc-draggable",
-                                                    staticStyle: {
-                                                      "background-color":
-                                                        "#3c8dbc",
-                                                      "border-color": "#3c8dbc"
-                                                    },
+                                                      "fc-day-top fc-sun fc-past",
                                                     attrs: {
-                                                      href: "http://google.com/"
+                                                      "data-date": "2019-06-23"
                                                     }
                                                   },
                                                   [
                                                     _c(
-                                                      "div",
+                                                      "span",
                                                       {
                                                         staticClass:
-                                                          "fc-content"
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("23")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-mon fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-06-24"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("24")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-tue fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-06-25"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("25")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-wed fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-06-26"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("26")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-thu fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-06-27"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("27")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-fri fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-06-28"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("28")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-sat fc-past",
+                                                    attrs: {
+                                                      "data-date": "2019-06-29"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("29")]
+                                                    )
+                                                  ]
+                                                )
+                                              ])
+                                            ]),
+                                            _c("tbody", [
+                                              _c("tr", [
+                                                _c("td"),
+                                                _c("td"),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-event-container",
+                                                    attrs: { colspan: "3" }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "a",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-grid-event fc-h-event fc-event fc-start fc-end fc-draggable",
+                                                        staticStyle: {
+                                                          "background-color":
+                                                            "#f39c12",
+                                                          "border-color":
+                                                            "#f39c12"
+                                                        }
                                                       },
                                                       [
                                                         _c(
-                                                          "span",
+                                                          "div",
                                                           {
                                                             staticClass:
-                                                              "fc-time"
-                                                          },
-                                                          [_vm._v("12a")]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "span",
-                                                          {
-                                                            staticClass:
-                                                              "fc-title"
+                                                              "fc-content"
                                                           },
                                                           [
-                                                            _vm._v(
-                                                              "Click for Google"
+                                                            _c(
+                                                              "span",
+                                                              {
+                                                                staticClass:
+                                                                  "fc-time"
+                                                              },
+                                                              [_vm._v("12a")]
+                                                            ),
+                                                            _vm._v(" "),
+                                                            _c(
+                                                              "span",
+                                                              {
+                                                                staticClass:
+                                                                  "fc-title"
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  "Long Event"
+                                                                )
+                                                              ]
                                                             )
                                                           ]
                                                         )
                                                       ]
                                                     )
                                                   ]
-                                                )
-                                              ]
-                                            ),
-                                            _c("td", {
-                                              attrs: { rowspan: "2" }
-                                            })
-                                          ]),
-                                          _c("tr", [
-                                            _c(
-                                              "td",
-                                              {
-                                                staticClass:
-                                                  "fc-event-container"
-                                              },
-                                              [
+                                                ),
                                                 _c(
-                                                  "a",
+                                                  "td",
                                                   {
                                                     staticClass:
-                                                      "fc-day-grid-event fc-h-event fc-event fc-start fc-end fc-draggable",
-                                                    staticStyle: {
-                                                      "background-color":
-                                                        "#00c0ef",
-                                                      "border-color": "#00c0ef"
-                                                    }
+                                                      "fc-event-container"
                                                   },
                                                   [
                                                     _c(
-                                                      "div",
+                                                      "a",
                                                       {
                                                         staticClass:
-                                                          "fc-content"
+                                                          "fc-day-grid-event fc-h-event fc-event fc-start fc-end fc-draggable",
+                                                        staticStyle: {
+                                                          "background-color":
+                                                            "#3c8dbc",
+                                                          "border-color":
+                                                            "#3c8dbc"
+                                                        },
+                                                        attrs: {
+                                                          href:
+                                                            "http://google.com/"
+                                                        }
                                                       },
                                                       [
                                                         _c(
-                                                          "span",
+                                                          "div",
                                                           {
                                                             staticClass:
-                                                              "fc-time"
+                                                              "fc-content"
                                                           },
-                                                          [_vm._v("12p")]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "span",
-                                                          {
-                                                            staticClass:
-                                                              "fc-title"
-                                                          },
-                                                          [_vm._v("Lunch")]
+                                                          [
+                                                            _c(
+                                                              "span",
+                                                              {
+                                                                staticClass:
+                                                                  "fc-time"
+                                                              },
+                                                              [_vm._v("12a")]
+                                                            ),
+                                                            _vm._v(" "),
+                                                            _c(
+                                                              "span",
+                                                              {
+                                                                staticClass:
+                                                                  "fc-title"
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  "Click for Google"
+                                                                )
+                                                              ]
+                                                            )
+                                                          ]
                                                         )
                                                       ]
                                                     )
                                                   ]
-                                                )
-                                              ]
-                                            )
+                                                ),
+                                                _c("td")
+                                              ])
+                                            ])
                                           ])
-                                        ])
-                                      ])
+                                        ]
+                                      )
                                     ]
-                                  )
-                                ]
-                              ),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "fc-row fc-week fc-widget-content",
-                                  staticStyle: { height: "113px" }
-                                },
-                                [
-                                  _c("div", { staticClass: "fc-bg" }, [
-                                    _c("table", {}, [
-                                      _c("tbody", [
-                                        _c("tr", [
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-sun fc-future",
-                                            attrs: { "data-date": "2019-06-30" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-mon fc-other-month fc-future",
-                                            attrs: { "data-date": "2019-07-01" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-tue fc-other-month fc-future",
-                                            attrs: { "data-date": "2019-07-02" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-wed fc-other-month fc-future",
-                                            attrs: { "data-date": "2019-07-03" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-thu fc-other-month fc-future",
-                                            attrs: { "data-date": "2019-07-04" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-fri fc-other-month fc-future",
-                                            attrs: { "data-date": "2019-07-05" }
-                                          }),
-                                          _c("td", {
-                                            staticClass:
-                                              "fc-day fc-widget-content fc-sat fc-other-month fc-future",
-                                            attrs: { "data-date": "2019-07-06" }
-                                          })
-                                        ])
-                                      ])
-                                    ])
-                                  ]),
+                                  ),
                                   _c(
                                     "div",
-                                    { staticClass: "fc-content-skeleton" },
+                                    {
+                                      staticClass:
+                                        "fc-row fc-week fc-widget-content",
+                                      staticStyle: { height: "115px" }
+                                    },
                                     [
-                                      _c("table", [
-                                        _c("thead", [
-                                          _c("tr", [
-                                            _c(
-                                              "td",
-                                              {
+                                      _c("div", { staticClass: "fc-bg" }, [
+                                        _c("table", {}, [
+                                          _c("tbody", [
+                                            _c("tr", [
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-sun fc-future",
+                                                  "fc-day fc-widget-content fc-sun fc-today ",
                                                 attrs: {
                                                   "data-date": "2019-06-30"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("30")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-mon fc-other-month fc-future",
+                                                  "fc-day fc-widget-content fc-mon fc-other-month fc-future",
                                                 attrs: {
                                                   "data-date": "2019-07-01"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("1")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-tue fc-other-month fc-future",
+                                                  "fc-day fc-widget-content fc-tue fc-other-month fc-future",
                                                 attrs: {
                                                   "data-date": "2019-07-02"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("2")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-wed fc-other-month fc-future",
+                                                  "fc-day fc-widget-content fc-wed fc-other-month fc-future",
                                                 attrs: {
                                                   "data-date": "2019-07-03"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("3")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-thu fc-other-month fc-future",
+                                                  "fc-day fc-widget-content fc-thu fc-other-month fc-future",
                                                 attrs: {
                                                   "data-date": "2019-07-04"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("4")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-fri fc-other-month fc-future",
+                                                  "fc-day fc-widget-content fc-fri fc-other-month fc-future",
                                                 attrs: {
                                                   "data-date": "2019-07-05"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("5")]
-                                                )
-                                              ]
-                                            ),
-                                            _c(
-                                              "td",
-                                              {
+                                              }),
+                                              _c("td", {
                                                 staticClass:
-                                                  "fc-day-top fc-sat fc-other-month fc-future",
+                                                  "fc-day fc-widget-content fc-sat fc-other-month fc-future",
                                                 attrs: {
                                                   "data-date": "2019-07-06"
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "fc-day-number"
-                                                  },
-                                                  [_vm._v("6")]
-                                                )
-                                              ]
-                                            )
-                                          ])
-                                        ]),
-                                        _c("tbody", [
-                                          _c("tr", [
-                                            _c("td"),
-                                            _c("td"),
-                                            _c("td"),
-                                            _c("td"),
-                                            _c("td"),
-                                            _c("td"),
-                                            _c("td")
+                                              })
+                                            ])
                                           ])
                                         ])
-                                      ])
+                                      ]),
+                                      _c(
+                                        "div",
+                                        { staticClass: "fc-content-skeleton" },
+                                        [
+                                          _c("table", [
+                                            _c("thead", [
+                                              _c("tr", [
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-sun fc-today ",
+                                                    attrs: {
+                                                      "data-date": "2019-06-30"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("30")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-mon fc-other-month fc-future",
+                                                    attrs: {
+                                                      "data-date": "2019-07-01"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("1")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-tue fc-other-month fc-future",
+                                                    attrs: {
+                                                      "data-date": "2019-07-02"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("2")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-wed fc-other-month fc-future",
+                                                    attrs: {
+                                                      "data-date": "2019-07-03"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("3")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-thu fc-other-month fc-future",
+                                                    attrs: {
+                                                      "data-date": "2019-07-04"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("4")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-fri fc-other-month fc-future",
+                                                    attrs: {
+                                                      "data-date": "2019-07-05"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("5")]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-day-top fc-sat fc-other-month fc-future",
+                                                    attrs: {
+                                                      "data-date": "2019-07-06"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-number"
+                                                      },
+                                                      [_vm._v("6")]
+                                                    )
+                                                  ]
+                                                )
+                                              ])
+                                            ]),
+                                            _c("tbody", [
+                                              _c("tr", [
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-event-container"
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "a",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-grid-event fc-h-event fc-event fc-start fc-end fc-draggable",
+                                                        staticStyle: {
+                                                          "background-color":
+                                                            "#0073b7",
+                                                          "border-color":
+                                                            "#0073b7"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "fc-content"
+                                                          },
+                                                          [
+                                                            _c(
+                                                              "span",
+                                                              {
+                                                                staticClass:
+                                                                  "fc-time"
+                                                              },
+                                                              [_vm._v("10:30a")]
+                                                            ),
+                                                            _vm._v(" "),
+                                                            _c(
+                                                              "span",
+                                                              {
+                                                                staticClass:
+                                                                  "fc-title"
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  "Meeting"
+                                                                )
+                                                              ]
+                                                            )
+                                                          ]
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-event-container",
+                                                    attrs: { rowspan: "2" }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "a",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-grid-event fc-h-event fc-event fc-start fc-end fc-draggable",
+                                                        staticStyle: {
+                                                          "background-color":
+                                                            "#00a65a",
+                                                          "border-color":
+                                                            "#00a65a"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "fc-content"
+                                                          },
+                                                          [
+                                                            _c(
+                                                              "span",
+                                                              {
+                                                                staticClass:
+                                                                  "fc-time"
+                                                              },
+                                                              [_vm._v("7p")]
+                                                            ),
+                                                            _vm._v(" "),
+                                                            _c(
+                                                              "span",
+                                                              {
+                                                                staticClass:
+                                                                  "fc-title"
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  "Birthday Party"
+                                                                )
+                                                              ]
+                                                            )
+                                                          ]
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                ),
+                                                _c("td", {
+                                                  attrs: { rowspan: "2" }
+                                                }),
+                                                _c("td", {
+                                                  attrs: { rowspan: "2" }
+                                                }),
+                                                _c("td", {
+                                                  attrs: { rowspan: "2" }
+                                                }),
+                                                _c("td", {
+                                                  attrs: { rowspan: "2" }
+                                                }),
+                                                _c("td", {
+                                                  attrs: { rowspan: "2" }
+                                                })
+                                              ]),
+                                              _c("tr", [
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "fc-event-container"
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "a",
+                                                      {
+                                                        staticClass:
+                                                          "fc-day-grid-event fc-h-event fc-event fc-start fc-end fc-draggable",
+                                                        staticStyle: {
+                                                          "background-color":
+                                                            "#00c0ef",
+                                                          "border-color":
+                                                            "#00c0ef"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "fc-content"
+                                                          },
+                                                          [
+                                                            _c(
+                                                              "span",
+                                                              {
+                                                                staticClass:
+                                                                  "fc-time"
+                                                              },
+                                                              [_vm._v("12p")]
+                                                            ),
+                                                            _vm._v(" "),
+                                                            _c(
+                                                              "span",
+                                                              {
+                                                                staticClass:
+                                                                  "fc-title"
+                                                              },
+                                                              [_vm._v("Lunch")]
+                                                            )
+                                                          ]
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ])
+                                            ])
+                                          ])
+                                        ]
+                                      )
                                     ]
                                   )
                                 ]
                               )
                             ]
                           )
-                        ]
-                      )
+                        ])
+                      ])
                     ])
                   ])
-                ])
-              ])
+                ]
+              )
             ])
-          ])
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c("h4", { staticClass: "modal-title" }, [_vm._v("Add room type")]),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-default",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("Close")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-        [_vm._v("Submit")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c("h4", { staticClass: "modal-title" }, [_vm._v("Edit Room type")]),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-default",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("Close")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-        [_vm._v("Submit")]
-      )
+          ]
+        )
+      ])
     ])
   }
 ]
