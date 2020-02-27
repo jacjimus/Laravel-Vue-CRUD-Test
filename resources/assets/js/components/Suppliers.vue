@@ -31,10 +31,10 @@
                                 <td>{{supplier.created_at}}</td>
 
                                 <td>
-                                    <a href="#"  @click="initUpdate(supplier)">
+                                    <a href="javascript:void(0)"  @click="initUpdate(supplier)">
                                         <i class="fa fa-edit blue"></i>
                                     </a>|&nbsp;
-                                    <a href="#"  @click="delSupplier(index)">
+                                    <a href="javascript:void(0)"  @click="delSupplier(supplier.id)">
                                         <i class="fa fa-trash red"></i>
                                     </a>
                                 </td>
@@ -160,6 +160,7 @@
 
             },
             delSupplier(id) {
+
                 swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
@@ -170,7 +171,7 @@
                     confirmButtonText: 'Yes, delete it!'
                 }).then((result) => {
                     if (result.value) {
-                        this.form.delete('api/supplier/del/' + id).then(() => {
+                        this.form.delete('api/suppliers/del/' + id).then(() => {
 
                             Fire.$emit('NeedRefresh');
                             toast.fire({

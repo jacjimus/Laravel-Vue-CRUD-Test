@@ -57033,7 +57033,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 confirmButtonText: 'Yes, delete it!'
             }).then(function (result) {
                 if (result.value) {
-                    _this3.form.delete('api/supplier/del/' + id).then(function () {
+                    _this3.form.delete('api/suppliers/del/' + id).then(function () {
 
                         Fire.$emit('NeedRefresh');
                         toast.fire({
@@ -57081,7 +57081,7 @@ var render = function() {
                         _c(
                           "a",
                           {
-                            attrs: { href: "#" },
+                            attrs: { href: "javascript:void(0)" },
                             on: {
                               click: function($event) {
                                 return _vm.initUpdate(supplier)
@@ -57094,10 +57094,10 @@ var render = function() {
                         _c(
                           "a",
                           {
-                            attrs: { href: "#" },
+                            attrs: { href: "javascript:void(0)" },
                             on: {
                               click: function($event) {
-                                return _vm.delSupplier(index)
+                                return _vm.delSupplier(supplier.id)
                               }
                             }
                           },

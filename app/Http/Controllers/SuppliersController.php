@@ -41,12 +41,11 @@ class SuppliersController extends Controller
      */
     public function store(SupplierRequest $request)
     {
-
-        if($request->isMethod('put') ) :
-         $supplier = $request->all();
+    	$supplier = new Suppliers();
+    	$supplier->fill($request->all());
         if($supplier->save())
             return new SuppliersResource($supplier);
-        endif;
+
     }
 
     /**
@@ -74,6 +73,13 @@ class SuppliersController extends Controller
     {
         //
     }
+
+	public function destroy( $id)
+	{
+
+		Suppliers::find($id)->delete();
+		return response()->json(['success'=>"Supplier deleted successfully.",]);
+	}
 
 
 

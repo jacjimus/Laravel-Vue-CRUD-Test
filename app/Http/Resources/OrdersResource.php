@@ -2,8 +2,9 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Products;
 use Illuminate\Http\Resources\Json\JsonResource;
-
+use App\Models\OrderDetails;
 class OrdersResource extends JsonResource
 {
     /**
@@ -14,6 +15,12 @@ class OrdersResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        //return parent::toArray($request);
+	    return [
+		    'id' => $this->id,
+		    'order_number' => $this->order_number,
+		    'product' => OrderDetails::where('order_id' , $this->order_number)->get(),
+
+	    ];
     }
 }
