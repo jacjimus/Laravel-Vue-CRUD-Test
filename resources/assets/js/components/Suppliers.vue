@@ -31,9 +31,13 @@
                                 <td>{{supplier.created_at}}</td>
 
                                 <td>
+
+                                    <a href="javascript:void(0)"  @click="viewProducts(supplier.id)">
+                                        <i class="fa fa-eye green"></i>
+                                    </a>&nbsp;|&nbsp;
                                     <a href="javascript:void(0)"  @click="initUpdate(supplier)">
                                         <i class="fa fa-edit blue"></i>
-                                    </a>|&nbsp;
+                                    </a>&nbsp;|&nbsp;
                                     <a href="javascript:void(0)"  @click="delSupplier(supplier.id)">
                                         <i class="fa fa-trash red"></i>
                                     </a>

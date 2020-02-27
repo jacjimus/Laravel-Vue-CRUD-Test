@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Products;
 use App\Http\Resources\ProductsResource;
-use Illuminate\Http\Request;
+use App\Http\Requests\ProductRequest;
 
 class ProductsController extends Controller
 {
@@ -29,26 +29,14 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        $request->validate([
-            'room_type_id' => 'required',
-            'hotel_id' => 'required',
-            'season_id' => 'required',
-            'cost' => 'required',
 
-        ]);
+    	$product = new Products();
+    	$product->fill($request->all());
 
-
-        $price = ($request->isMethod('put')) ? Prices::findOrFail($request->input('id')) : new Prices();
-        $price->room_type_id = $request->input('room_type_id');
-        $price->hotel_id = $request->input('hotel_id');
-        $price->season_id = $request->input('season_id');
-        $price->cost = $request->input('cost');
-        $price->status = 1;
-
-        if($price->save())
-            return new PriceResource($price);
+        if($product->save())
+            return new ProductsResource($product);
     }
 
 
@@ -61,7 +49,7 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        Prices::destroy($id);
+        Products::find($id)->delete();
         return response()->json(['success'=>"Room type deleted successfully.", 'id'=>''.$id]);
     }
 }

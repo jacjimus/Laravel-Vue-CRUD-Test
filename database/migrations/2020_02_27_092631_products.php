@@ -19,6 +19,7 @@ class Products extends Migration
             $table->string('description' , 45)->nullable();
             $table->string('quantity', 45)->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
