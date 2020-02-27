@@ -2,10 +2,10 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Orders;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-
-class Roomtype extends JsonResource
+class OrderDetails extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,10 +18,11 @@ class Roomtype extends JsonResource
         //return parent::toArray($request);
 
         return [
-            'id' => $this->id,
-            'room_type' => $this->room_type,
-            'status' => $this->status,
-            'created_at' => date('Y, M, d', strtotime($this->created_at)),
+            'cost' =>  $this->cost,
+            'order_id' => $this->order_id,
+            'order_number' => Orders::find($this->order_id)->first()->order_number,
+            'product_id' => $this->product_id,
+            'created_at' => $this->created_at
         ];
     }
 }

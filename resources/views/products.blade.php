@@ -1,10 +1,10 @@
 @extends('layout.main')
 
 @section('title')
-    {{config('app.name')}} - Hotels
+    {{config('app.name')}} - Products
 @endsection
 
 @section('content')
 
-    <hotels></hotels>
+    <products></products>
 @endsection
