@@ -19,7 +19,7 @@ class OrdersResource extends JsonResource
 	    return [
 		    'id' => $this->id,
 		    'order_number' => $this->order_number,
-		    'product' => OrderDetails::where('order_id' , $this->order_number)->get(),
+		    'details' => OrderDetails::where('order_id' , $this->id)->with('product')->get(),
 
 	    ];
     }

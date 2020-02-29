@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <h2>Orders</h2>
-        <div class="card card-body mb-2" v-for="(order, index) in orders" :key="order.id">
+        <div class="card card-body mb-2" v-for="(order, index) in orders" :key="order.id" v-model.total="form.total =0" >
             <div class="row">
                 <div class="col-md-10"><h3>Order number: {{order.order_number}}</h3>  </div>
                 <div class="pull-right col-md-2">
@@ -14,12 +14,43 @@
             <div class="row">
                 <div class="col-md-6">
                     Order: Details:
-                    <p>
-                       {{order.order_number}} <br>
+                    <table class="table table-condensed">
+                        <tbody>
+                        <tr>
+                            <th>Product code</th>
+                            <th>Product name</th>
+                            <th>Quantity</th>
+                            <th>Amount</th>
 
-                    </p>
+
+                        </tr>
+                        <tr v-for="(prod, index) in order.details" :key="prod.id" v-model.total="form.total = prod.quantity * prod.product.amount" >
+                            <td>{{prod.id}}</td>
+                            <td>{{prod.product.name}}</td>
+                            <td>{{prod.quantity}}</td>
+                            <td>{{prod.product.amount}}</td>
+
+                            <td>
+
+
+                                <a href="javascript:void(0)"  @click="initUpdate(prod)">
+                                    <i class="fa fa-edit blue"></i>
+                                </a>&nbsp;|&nbsp;
+                                <a href="javascript:void(0)"  @click="prodDelete(prod.id)">
+                                    <i class="fa fa-trash red"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
 
+            </div>
+            <div class="row">
+                <div class="col-md-6"></div>
+                <div class="pull-right col-md-6 text-bold">
+                    Order Total: {{form.total}}
+                </div>
             </div>
 
         </div>
@@ -68,16 +99,21 @@
                 form : new Form({
                     id: '',
                     order_number: '',
+                    details: '',
+                    product: '',
+                    total: 0,
                    }),
 
                 edit : true,
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
             }
         },
+
         created(){
             this.fetchOrders();
             Fire.$on('AfterCreate', () => {this.fetchOrders()});
         },
+
         methods: {
             fetchOrders(){
                 axios.get('api/orders')

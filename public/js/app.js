@@ -56548,6 +56548,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -56555,7 +56586,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             orders: {},
             form: new Form({
                 id: '',
-                order_number: ''
+                order_number: '',
+                details: '',
+                product: '',
+                total: 0
             }),
 
             edit: true,
@@ -56570,6 +56604,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             _this.fetchOrders();
         });
     },
+
 
     methods: {
         fetchOrders: function fetchOrders() {
@@ -56621,7 +56656,17 @@ var render = function() {
       _vm._l(_vm.orders, function(order, index) {
         return _c(
           "div",
-          { key: order.id, staticClass: "card card-body mb-2" },
+          {
+            key: order.id,
+            staticClass: "card card-body mb-2",
+            model: {
+              value: (_vm.form.total = 0),
+              callback: function($$v) {
+                _vm.$set(_vm.form, "total =0", $$v)
+              },
+              expression: "form.total =0"
+            }
+          },
           [
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-10" }, [
@@ -56650,12 +56695,87 @@ var render = function() {
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-6" }, [
                 _vm._v("\n                Order: Details:\n                "),
-                _c("p", [
-                  _vm._v(
-                    "\n                   " + _vm._s(order.order_number) + " "
-                  ),
-                  _c("br")
+                _c("table", { staticClass: "table table-condensed" }, [
+                  _c(
+                    "tbody",
+                    [
+                      _vm._m(0, true),
+                      _vm._v(" "),
+                      _vm._l(order.details, function(prod, index) {
+                        return _c(
+                          "tr",
+                          {
+                            key: prod.id,
+                            model: {
+                              value: (_vm.form.total =
+                                prod.quantity * prod.product.amount),
+                              callback: function($$v) {
+                                _vm.$set(
+                                  (_vm.form.total =
+                                    prod.quantity * prod.product),
+                                  "amount",
+                                  $$v
+                                )
+                              },
+                              expression:
+                                "form.total = prod.quantity * prod.product.amount"
+                            }
+                          },
+                          [
+                            _c("td", [_vm._v(_vm._s(prod.id))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(prod.product.name))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(prod.quantity))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(prod.product.amount))]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c(
+                                "a",
+                                {
+                                  attrs: { href: "javascript:void(0)" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.initUpdate(prod)
+                                    }
+                                  }
+                                },
+                                [_c("i", { staticClass: "fa fa-edit blue" })]
+                              ),
+                              _vm._v(" | \n                            "),
+                              _c(
+                                "a",
+                                {
+                                  attrs: { href: "javascript:void(0)" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.prodDelete(prod.id)
+                                    }
+                                  }
+                                },
+                                [_c("i", { staticClass: "fa fa-trash red" })]
+                              )
+                            ])
+                          ]
+                        )
+                      })
+                    ],
+                    2
+                  )
                 ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-6" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "pull-right col-md-6 text-bold" }, [
+                _vm._v(
+                  "\n                Order Total: " +
+                    _vm._s(_vm.form.total) +
+                    "\n            "
+                )
               ])
             ])
           ]
@@ -56674,7 +56794,7 @@ var render = function() {
             { staticClass: "modal-dialog", attrs: { role: "document" } },
             [
               _c("div", { staticClass: "modal-content" }, [
-                _vm._m(0),
+                _vm._m(1),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-body" }, [
                   _c(
@@ -56780,6 +56900,20 @@ var render = function() {
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("Product code")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Product name")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Quantity")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Amount")])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -57792,7 +57926,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
-      _c("h3", { staticClass: "card-title" }, [_vm._v("Products Table")]),
+      _c("h3", { staticClass: "card-title" }, [_vm._v("All Products")]),
       _vm._v(" "),
       _c("div", { staticClass: "card-tools" }, [
         _c(

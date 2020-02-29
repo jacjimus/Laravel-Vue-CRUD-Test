@@ -4,7 +4,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Products Table</h3>
+                        <h3 class="card-title">All Products</h3>
 
                         <div class="card-tools">
                             <button class="btn btn-success" data-toggle="modal" data-target="#prod-modal">
